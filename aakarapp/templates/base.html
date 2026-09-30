@@ -1,0 +1,270 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c0e14">
+    <title>{% block title %}Aakaar CR Portal 2026 | Asia's Largest Civil Engineering Fest, IIT Bombay{% endblock %}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="{% static 'css/pixel-theme.css' %}?v=20260930-merge-a" rel="stylesheet">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+
+<!-- ============ PIXEL HEADER (design: website A) ============ -->
+<header class="px-header">
+    <div class="px-header-inner">
+        <a class="px-logo" href="{% url 'home' %}" title="Aakaar CR Portal 2026" aria-label="Aakaar CR Portal home">
+            <img class="px-smooth" src="{% static 'img/Collection-1-19th.png' %}" alt="Aakaar 19th Edition logo" style="height:48px;width:auto;">
+        </a>
+
+        <nav class="px-nav" aria-label="Primary navigation">
+            <a class="px-tab {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span>Home</span>
+            </a>
+            <a class="px-tab" href="{% url 'home' %}#about">
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+                <span>About</span>
+            </a>
+            <a class="px-tab {% if request.resolver_match.url_name == 'tasks_page' %}active{% endif %}" href="{% url 'tasks_page' %}" {% if request.resolver_match.url_name == 'tasks_page' %}aria-current="page"{% endif %}>
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="7"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <span>Tasks</span>
+            </a>
+            <a class="px-tab {% if request.resolver_match.url_name == 'leaderboard' %}active{% endif %}" href="{% url 'leaderboard' %}" {% if request.resolver_match.url_name == 'leaderboard' %}aria-current="page"{% endif %}>
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+                <span>Scores</span>
+            </a>
+            <a class="px-tab" href="{% url 'home' %}#incentives">
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>Incentives</span>
+            </a>
+            <a class="px-tab" href="{% url 'home' %}#faq">
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                <span>FAQ</span>
+            </a>
+            <a class="px-tab" href="{% url 'home' %}#contact">
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>Team</span>
+            </a>
+            {% if user.is_authenticated %}
+                <a class="px-tab {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}aria-current="page"{% endif %}>
+                    <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><rect height="9" width="9" x="3" y="3"/><rect height="9" width="9" x="12" y="3"/><rect height="9" width="9" x="12" y="12"/><rect height="9" width="9" x="3" y="12"/></svg>
+                    <span>Dashboard</span>
+                </a>
+            {% endif %}
+        </nav>
+
+        <div class="px-header-actions">
+            {% if user.is_authenticated %}
+                <a class="px-btn px-btn-sm d-none d-sm-inline-flex" href="{% url 'logout' %}"><span>Logout</span><span class="font-pixel">&raquo;</span></a>
+            {% else %}
+                <a class="px-btn px-btn-sm d-none d-sm-inline-flex" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><span>Login / Register</span></a>
+            {% endif %}
+            <button type="button" class="px-mode-toggle" id="pxModeToggle" aria-label="Switch between day and night mode" title="Toggle day / night mode">
+                <span class="px-mode-icon" id="pxModeIcon" aria-hidden="true">&#9728;&#65039;</span>
+                <span id="pxModeLabel">DAY</span>
+            </button>
+            <button type="button" class="px-burger" id="pxBurger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="pxDrawer">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+    <div class="px-drawer" id="pxDrawer">
+        <a class="px-tab" href="{% url 'home' %}"><span>Home</span></a>
+        <a class="px-tab" href="{% url 'home' %}#about"><span>About</span></a>
+        <a class="px-tab" href="{% url 'tasks_page' %}"><span>Tasks</span></a>
+        <a class="px-tab" href="{% url 'leaderboard' %}"><span>Scores</span></a>
+        <a class="px-tab" href="{% url 'home' %}#incentives"><span>Incentives</span></a>
+        <a class="px-tab" href="{% url 'home' %}#faq"><span>FAQ</span></a>
+        <a class="px-tab" href="{% url 'home' %}#contact"><span>Team</span></a>
+        {% if user.is_authenticated %}
+            <a class="px-tab" href="{% url 'dashboard' %}"><span>Dashboard</span></a>
+            <a class="px-tab active" href="{% url 'logout' %}"><span>Logout</span></a>
+        {% else %}
+            <a class="px-tab active" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><span>Login / Register</span></a>
+        {% endif %}
+    </div>
+</header>
+
+<main>
+{% if messages %}
+    <div class="px-toast-stack">{% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+</main>
+
+<!-- ============ PIXEL FOOTER (design: website A) ============ -->
+<footer class="px-footer">
+    <div class="px-footer-inner">
+        <div class="px-footer-brand">
+            <span class="px-bolt">&#9889;</span>
+            <span>PixelCraft Aakaar</span>
+            <span style="color:var(--px-line)">|</span>
+            <span>&copy; 2026 Aakaar, IIT Bombay. All rights reserved.</span>
+        </div>
+        <div class="px-footer-social">
+            <a class="px-social" href="https://www.instagram.com/aakaar_iitbombay/" target="_blank" rel="noopener" aria-label="Aakaar on Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="px-social" href="https://www.facebook.com/AakaariitBombay" target="_blank" rel="noopener" aria-label="Aakaar on Facebook"><i class="bi bi-facebook"></i></a>
+            <a class="px-social" href="https://www.linkedin.com/company/aakaariitb/" target="_blank" rel="noopener" aria-label="Aakaar on LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <div class="px-note-strip"><span class="neon-dot"></span><span>Crafted with cyber concrete, night code &amp; pixel love &#128155;</span></div>
+    </div>
+</footer>
+
+<!-- ============ LOGIN MODAL — terminal window (Django form logic unchanged) ============ -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="px-window-bar" style="border-bottom:0;">
+                <span class="px-title"><span aria-hidden="true">&#128421;&#65039;</span> CR_NIGHT_CONSOLE_2026.exe</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1);"></button>
+            </div>
+            <div class="modal-header" style="border-top:2px solid var(--px-line);">
+                <h5 class="modal-title">Registered login</h5>
+            </div>
+            <div class="modal-body px-window-body">
+                {% if login_error %}<div class="alert alert-danger mb-3">{{ login_error }}</div>{% endif %}
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="loginEmail">Email address <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="email" class="form-control" id="loginEmail" name="username_or_email" placeholder="name@college.edu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="loginPassword">Password <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="text-end mb-4"><a href="{% url 'account_reset_password' %}">Forgot password?</a></div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="px-btn px-btn-block"><span>Enter portal</span><span class="font-pixel">&rarr;</span></button>
+                        <button type="button" class="px-btn px-btn-dark px-btn-block" data-bs-target="#registerModal" data-bs-toggle="modal" data-bs-dismiss="modal">Create account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============ REGISTER MODAL — terminal window (Django form logic unchanged) ============ -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="px-window-bar" style="border-bottom:0;">
+                <span class="px-title"><span aria-hidden="true">&#128421;&#65039;</span> CR_REGISTRATION_2026.exe</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1);"></button>
+            </div>
+            <div class="modal-header" style="border-top:2px solid var(--px-line);">
+                <h5 class="modal-title">Register as CR</h5>
+            </div>
+            <div class="modal-body px-window-body">
+                <p class="px-kicker mb-3">[ JOIN THE OFFICIAL CAMPUS AMBASSADOR NETWORK ]</p>
+                {% if error %}<div class="alert alert-danger mb-3">{{ error }}</div>{% endif %}
+                <form action="{% url 'register_cr' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="regName">Full name <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="text" class="form-control" id="regName" name="names" placeholder="e.g. Rahul Verma" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="regEmail">College email <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="email" class="form-control" id="regEmail" name="emails" placeholder="name@college.edu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="regPassword">Password <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="password" class="form-control" id="regPassword" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="regCollege">Institution name <span style="color:var(--px-coral-text)">*</span></label>
+                        <input type="text" class="form-control" id="regCollege" name="colName" placeholder="e.g. IIT Bombay / NIT / COEP" required>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="regState">State <span style="color:var(--px-coral-text)">*</span></label>
+                            <input type="text" class="form-control" id="regState" name="state" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="regCity">City <span style="color:var(--px-coral-text)">*</span></label>
+                            <input type="text" class="form-control" id="regCity" name="city" required>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="regPin">Pincode <span style="color:var(--px-coral-text)">*</span></label>
+                            <input type="text" class="form-control" id="regPin" name="pincode" pattern="[0-9]{6}" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="regPhone">Phone number <span style="color:var(--px-coral-text)">*</span></label>
+                            <input type="tel" class="form-control" id="regPhone" name="phoneNo" pattern="[0-9]{10}" placeholder="10-digit mobile" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="px-btn px-btn-block mt-2"><span>Submit CR application</span><span class="font-pixel">&rarr;</span></button>
+                    <div class="px-center px-kicker mt-3">By applying, you agree to represent Aakaar, IIT Bombay with dignity and integrity.</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(() => {
+    // ---- Day / Night theme toggle (persisted in localStorage) ----
+    const root = document.documentElement;
+    const icon = document.getElementById('pxModeIcon');
+    const label = document.getElementById('pxModeLabel');
+    const saved = localStorage.getItem('px-theme');
+    if (saved === 'night' || saved === 'day') root.setAttribute('data-theme', saved);
+    const syncToggle = () => {
+        const night = root.getAttribute('data-theme') === 'night';
+        if (icon) icon.textContent = night ? '\u{1F319}' : '\u2600\uFE0F';   // moon : sun
+        if (label) label.textContent = night ? 'NIGHT' : 'DAY';
+    };
+    syncToggle();
+    const toggle = document.getElementById('pxModeToggle');
+    if (toggle) toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('px-theme', next);
+        syncToggle();
+    });
+
+    // Mobile drawer toggle
+    const burger = document.getElementById('pxBurger');
+    const drawer = document.getElementById('pxDrawer');
+    if (burger && drawer) {
+        burger.addEventListener('click', () => {
+            const open = drawer.classList.toggle('open');
+            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+    // Toast auto-dismiss
+    setTimeout(() => {
+        document.querySelectorAll('.px-toast-stack .alert').forEach(el => el.remove());
+    }, 6000);
+    // Step-wise pixel reveal (respects reduced motion)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reveals = document.querySelectorAll('.px-reveal');
+    if (reveals.length && !reduceMotion) {
+        document.body.classList.add('motion-ready');
+        const io = new IntersectionObserver(entries => entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+        }), { threshold: .12, rootMargin: '0px 0px -5% 0px' });
+        reveals.forEach(item => io.observe(item));
+    } else {
+        reveals.forEach(item => item.classList.add('is-visible'));
+    }
+})();
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

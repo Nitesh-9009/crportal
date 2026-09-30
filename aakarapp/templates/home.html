@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Aakaar CR Portal 2026 | Asia's Largest Civil Engineering Fest, IIT Bombay{% endblock %}
+
+{% block content %}
+<!-- ============ HERO (design: website A) ============ -->
+<section class="px-hero" id="home">
+    <div class="px-hero-grid">
+        <div>
+            <span class="px-ribbon">&#9733; Welcome to Aakaar CR Portal 2026</span>
+            <h1>Building Tomorrow's Leaders</h1>
+            <p class="px-hero-sub">
+                <span>&#9654; Asia's Largest Civil Engineering Fest &bull; IIT Bombay</span>
+                <span class="neon-dot"></span>
+            </p>
+            <p class="px-hero-copy mt-3">
+                Join a premier network of ambitious students, represent <strong>Aakaar, IIT Bombay</strong> at your
+                campus, and unlock verified certificates, exclusive merchandise, flagship masterclasses, and
+                leadership recognition across India.
+            </p>
+            <div class="px-hero-actions">
+                {% if user.is_authenticated %}
+                    <a class="px-btn" href="{% url 'dashboard' %}"><span>Open your dashboard</span><span class="font-pixel">&rarr;</span></a>
+                    <a class="px-btn px-btn-dark" href="{% url 'tasks_page' %}"><span>View tasks</span></a>
+                    <a class="px-btn px-btn-ghost" href="{% url 'leaderboard' %}">&#127942; Scoreboard</a>
+                {% else %}
+                    <a class="px-btn" href="#" data-bs-toggle="modal" data-bs-target="#registerModal"><span>Register as CR</span><span class="font-pixel">&rarr;</span></a>
+                    <a class="px-btn px-btn-dark" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><span>CR Login</span></a>
+                    <a class="px-btn px-btn-ghost" href="{% url 'leaderboard' %}">&#127942; Scoreboard</a>
+                {% endif %}
+            </div>
+            <div class="px-hero-note">
+                <span class="neon-dot"></span>
+                <span>Online registrations open for batch 2025-26 [SECURE_SSL]</span>
+            </div>
+        </div>
+
+        <div class="px-frame-wrap d-none d-md-block">
+            <div class="px-frame-badge px-badge-glow">4.2K+ Active CRs</div>
+            <div class="px-frame scanlines">
+                <div class="px-frame-bar">
+                    <span style="color:var(--px-yellow)">cr_avatar_night_v26.sprite</span>
+                    <span class="px-dots"><span class="px-dot-red"></span><span class="px-dot-yellow"></span><span class="px-dot-green"></span></span>
+                </div>
+                <div class="px-frame-body">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+                        <figure style="margin:0;">
+                            <img src="{% static 'img/px-avatar.png' %}" alt="16-bit pixel art avatar of a young male Indian engineering student" class="px-smooth">
+                            <figcaption class="px-tag" style="display:block;text-align:center;margin-top:.4rem;">REP.MALE</figcaption>
+                        </figure>
+                        <figure style="margin:0;">
+                            <img src="{% static 'img/px-avatar-female.png' %}" alt="16-bit pixel art avatar of a young female Indian engineering student" class="px-smooth">
+                            <figcaption class="px-tag" style="display:block;text-align:center;margin-top:.4rem;">REP.FEMALE</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="px-frame-foot">
+                    <span class="px-status"><span class="neon-dot"></span> STATUS: ONLINE</span>
+                    <span class="font-pixel" style="color:var(--px-yellow-text); font-size:10px;">SECTOR: IITB</span>
+                </div>
+            </div>
+            <div class="px-mini-card">
+                <span style="font-size:1.4rem" aria-hidden="true">&#127963;&#65039;</span>
+                <div>
+                    <div class="px-mini-title">1.2K+ Colleges</div>
+                    <div class="px-mini-sub">50+ Technical Events</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ LIVE STATS TICKER ============ -->
+<section class="px-ticker" aria-label="Program reach">
+    <div class="px-ticker-inner">
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-green-text)">&#9654;</span> 4,200+ Active Ambassadors</span>
+        <span class="px-sep d-none d-md-inline">&#9632;</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow-text)">&#9654;</span> 1,200+ Top Colleges Pan-India</span>
+        <span class="px-sep d-none d-md-inline">&#9632;</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-cyan-text)">&#9654;</span> 50+ Competitions &amp; Workshops</span>
+        <span class="px-sep d-none d-md-inline">&#9632;</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow-text)">&#9654;</span> &#8377;5,00,000+ Prize Loot</span>
+    </div>
+</section>
+
+<!-- ============ ABOUT / AMBASSADOR PROFILE ============ -->
+<section class="px-section tint-a" id="about">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>About The Program</h2>
+            <div class="px-divider"></div>
+            <p class="px-kicker">[ LEVEL 01 : INTRODUCING CAMPUS AMBASSADOR NETWORK ]</p>
+        </div>
+
+        <div class="px-gap-grid px-cols-2" style="align-items:start;">
+            <div>
+                <div class="px-card" style="box-shadow:var(--shadow-hard)">
+                    <div class="px-corner-a"></div>
+                    <div class="px-corner-b"></div>
+                    <div class="scanlines" style="border:2px solid #000;">
+                        <img src="{% static 'img/px-avatar-female.png' %}" alt="Aakaar campus ambassador pixel portrait" class="px-smooth" style="width:100%;display:block;">
+                        <span class="px-tag" style="position:absolute;left:8px;bottom:8px;z-index:7;border-color:var(--px-yellow-text);">IIT BOMBAY REP</span>
+                    </div>
+                    <div class="mt-3 p-3" style="background:var(--px-surface-alt);border:2px solid #000;font-size:.76rem;">
+                        <div class="d-flex justify-content-between align-items-center fw-bold text-white flex-wrap gap-2">
+                            <span style="color:var(--px-yellow-text)">Aakaar Ambassador #2026</span>
+                            <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">READY</span>
+                        </div>
+                        <p class="mt-1 mb-0" style="color:var(--px-ink-dim);font-size:.72rem;">
+                            Lead student delegations to IIT Bombay's civil engineering arena.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-pixel" style="font-size:1rem;color:#fff;">Hi, Welcome to Aakaar CR Network</h3>
+                <p class="mt-3" style="color:var(--px-ink-dim);font-size:.9rem;">
+                    Aakaar's College Representative Program is the heartbeat of our outreach. We're on a mission to
+                    inspire college students across India to discover the exciting world of Civil Engineering.
+                    As an ambassador, you'll grow your network, sharpen your skills, and gain hands-on experience
+                    you won't find in classrooms.
+                </p>
+                <p style="color:var(--px-ink-dim);font-size:.9rem;">
+                    You will serve as the official link between <strong style="color:var(--px-yellow-text)">IIT Bombay</strong>
+                    and your institution &mdash; spearheading events, driving participation, and building real-world
+                    pedigree you won't find in textbooks.
+                </p>
+                <div class="mt-4 pt-4" style="border-top:2px solid var(--px-line);">
+                    <h4 class="font-pixel" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--px-yellow-text);">My Skills &amp; Level-Ups</h4>
+                    <div class="mt-4">
+                        <div class="px-xp">
+                            <div class="px-xp-head">
+                                <span><span class="px-chiplet px-fill-yellow">&lt;&gt;</span>Leadership &amp; Delegation Management</span>
+                                <span class="font-pixel" style="font-size:10px;color:var(--px-yellow-text)">95%</span>
+                            </div>
+                            <div class="px-xp-track"><div class="px-xp-fill px-fill-yellow" style="width:95%"></div></div>
+                        </div>
+                        <div class="px-xp">
+                            <div class="px-xp-head">
+                                <span><span class="px-chiplet px-fill-cyan">&#128396;&#65039;</span>Campus Outreach &amp; Public Relations</span>
+                                <span class="font-pixel" style="font-size:10px;color:var(--px-cyan-text)">90%</span>
+                            </div>
+                            <div class="px-xp-track"><div class="px-xp-fill px-fill-cyan" style="width:90%"></div></div>
+                        </div>
+                        <div class="px-xp">
+                            <div class="px-xp-head">
+                                <span><span class="px-chiplet px-fill-green">&#128241;</span>Digital Marketing &amp; Growth Campaigns</span>
+                                <span class="font-pixel" style="font-size:10px;color:var(--px-green-text)">85%</span>
+                            </div>
+                            <div class="px-xp-track"><div class="px-xp-fill px-fill-green" style="width:85%"></div></div>
+                        </div>
+                        <div class="px-xp">
+                            <div class="px-xp-head">
+                                <span><span class="px-chiplet px-fill-coral">&#129309;</span>Corporate Networking &amp; Event Production</span>
+                                <span class="font-pixel" style="font-size:10px;color:var(--px-coral-text)">88%</span>
+                            </div>
+                            <div class="px-xp-track"><div class="px-xp-fill px-fill-coral" style="width:88%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CR ROLES & QUESTS ============ -->
+<section class="px-section tint-b" id="responsibilities">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>CR Roles &amp; Quests</h2>
+            <div class="d-flex align-items-center justify-content-center mb-2" aria-hidden="true" style="gap:6px;">
+                <span style="width:12px;height:12px;background:var(--px-yellow)"></span>
+                <span style="width:12px;height:12px;background:var(--px-yellow)"></span>
+                <span style="width:96px;height:12px;background:var(--px-yellow)"></span>
+                <span style="width:12px;height:12px;background:var(--px-green);border:1px solid #000"></span>
+                <span style="width:12px;height:12px;background:var(--px-yellow)"></span>
+                <span style="width:12px;height:12px;background:var(--px-green);border:1px solid #000"></span>
+            </div>
+            <p class="px-kicker">[ WHAT YOU WILL ACHIEVE AS AN OFFICIAL AAKAAR AMBASSADOR ]</p>
+        </div>
+        <div class="px-gap-grid px-cols-3">
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#127963;&#65039;</span>
+                <h3>Face of Aakaar</h3>
+                <p>Represent Asia's largest civil engineering festival at your campus and establish your institute as a premier hub for engineering excellence.</p>
+            </div>
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#128225;</span>
+                <h3>Communication Link</h3>
+                <p>Act as the direct bridge between IIT Bombay coordinators and your college students for competition rules, deadlines, and live workshop passes.</p>
+            </div>
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#128202;</span>
+                <h3>Reporter &amp; Strategist</h3>
+                <p>Collect feedback, evaluate student interests, formulate outreach roadmaps, and share grassroots insights with the organizing managers.</p>
+            </div>
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#128640;</span>
+                <h3>Event Leader</h3>
+                <p>Host promotional drives, technical ideathons, or mock quiz rounds on your campus to boost team participation and student registrations.</p>
+            </div>
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#129309;</span>
+                <h3>Campus Pioneer</h3>
+                <p>Collaborate with civil student chapters (ASCE, ICI, IEI) and engineering clubs in your region to facilitate collective workshop enrollments.</p>
+            </div>
+            <div class="px-card hover-lift px-reveal">
+                <span class="px-card-icon">&#128161;</span>
+                <h3>Master Brainstormer</h3>
+                <p>Collaborate with like-minded student leaders nationwide on digital media campaigns, interactive civil puzzles, and virtual hackathons.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ INCENTIVES & LOOT ============ -->
+<section class="px-section tint-a" id="incentives">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>Incentives &amp; Loot</h2>
+            <div class="px-divider"></div>
+            <p class="px-kicker">[ EXCLUSIVE PERKS FOR REGISTERED &amp; PERFORMING COLLEGE REPS ]</p>
+        </div>
+        <div class="px-gap-grid px-cols-3" style="gap:2.5rem;">
+            <div class="px-card px-reveal" style="padding:0;display:flex;flex-direction:column;">
+                <div style="background:var(--px-surface-alt);border-bottom:3px solid #000;padding:2rem;text-align:center;">
+                    <div style="font-size:2.6rem" aria-hidden="true">&#128220;</div>
+                    <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-yellow-text)">IIT BOMBAY CREDENTIAL</div>
+                </div>
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">IIT Bombay Certificate</h3>
+                    <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Official Certificate of Appreciation endorsed by the Civil Engineering Association &amp; Aakaar, IIT Bombay to elevate your resume.</p>
+                    <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
+                        <span class="px-tag">#Official</span><span class="px-tag">#Verified</span><span class="px-tag">#CV_Boost</span>
+                    </div>
+                    <a class="px-btn px-btn-sm px-btn-block mt-auto" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Claim on completion</a>
+                </div>
+            </div>
+            <div class="px-card px-reveal" style="padding:0;display:flex;flex-direction:column;">
+                <div style="background:var(--px-surface-alt);border-bottom:3px solid #000;padding:2rem;text-align:center;">
+                    <div style="font-size:2.6rem" aria-hidden="true">&#128085;</div>
+                    <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-cyan-text)">EXCLUSIVE SWAG KIT</div>
+                </div>
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">Exclusive Merchandise</h3>
+                    <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Limited edition Aakaar IIT Bombay hoodies, custom pin badges, retro stickers, stationery, and engineer swag boxes delivered to top CRs.</p>
+                    <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
+                        <span class="px-tag" style="color:var(--px-cyan-text)">#Hoodies</span><span class="px-tag" style="color:var(--px-cyan-text)">#SwagKit</span><span class="px-tag" style="color:var(--px-cyan-text)">#Merch</span>
+                    </div>
+                    <a class="px-btn px-btn-sm px-btn-block mt-auto" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Unlock with points</a>
+                </div>
+            </div>
+            <div class="px-card px-reveal" style="padding:0;display:flex;flex-direction:column;">
+                <div style="background:var(--px-surface-alt);border-bottom:3px solid #000;padding:2rem;text-align:center;">
+                    <div style="font-size:2.6rem" aria-hidden="true">&#127914;</div>
+                    <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-green-text)">PRO PASS ACCESS</div>
+                </div>
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">Free Masterclasses &amp; Passes</h3>
+                    <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Complimentary access to premium BIM, GIS, Structural Analysis, and AI in Civil Engineering workshops taught by industry titans.</p>
+                    <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
+                        <span class="px-tag" style="color:var(--px-green-text)">#Workshops</span><span class="px-tag" style="color:var(--px-green-text)">#Passes</span><span class="px-tag" style="color:var(--px-green-text)">#VIP</span>
+                    </div>
+                    <a class="px-btn px-btn-sm px-btn-block mt-auto" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Redeem passes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ LEADERBOARD PREVIEW (live data from B) ============ -->
+<section class="px-section tint-b" id="leaderboard">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>Top CR High Scores</h2>
+            <div class="px-divider"></div>
+            <p class="px-kicker">[ REAL-TIME SCOREBOARD &bull; LIVE ARCADE TERMINAL RANKINGS ]</p>
+        </div>
+        <div class="px-table-wrap scanlines" style="max-width:56rem;margin:0 auto;">
+            <div class="table-responsive">
+                <table class="px-table">
+                    <thead>
+                        <tr><th>Rank</th><th>Representative</th><th>Institution</th><th style="text-align:right">Points</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for data in home_leaderboard %}
+                        <tr>
+                            <td class="px-rank">{% if forloop.counter == 1 %}#01 &#128081;{% elif forloop.counter == 2 %}#02 &#129351;{% elif forloop.counter == 3 %}#03 &#129352;{% else %}#{{ forloop.counter|stringformat:"02d" }}{% endif %}</td>
+                            <td class="text-white fw-bold">{{ data.name }}</td>
+                            <td class="px-college">{{ data.college }}</td>
+                            <td class="px-points">{{ data.score }} XP</td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="4" class="px-center py-4" style="color:var(--px-ink-dim)">[ NO SCORES LOGGED YET &mdash; BE THE FIRST TO COMPLETE A TASK ]</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 pt-3 d-flex justify-content-between align-items-center flex-wrap gap-2" style="border-top:2px solid var(--px-line);font-size:.72rem;color:var(--px-ink-dim);">
+                <span>Points update as tasks are graded &bull; LIVE // SYNCED</span>
+                <a class="fw-bold" href="{% url 'leaderboard' %}">Full scoreboard &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="px-section tint-c" id="sponsors" style="padding:3rem 0;">
+    <div class="px-shell px-center px-reveal">
+        <h3 class="font-pixel mb-4" style="font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--px-yellow-text)">Official Partners &amp; Collaborators</h3>
+        <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap:1.5rem;">
+            <a class="px-partner" href="https://unstop.com" target="_blank" rel="noopener">Platform Partner: <span style="color:var(--px-coral-text)"><img src="{% static 'img/Unstop-Logo-Transparent.png' %}" alt="Unstop"></span></a>
+            <a class="px-partner" href="https://www.studenttribe.in" target="_blank" rel="noopener">Outreach Partner: <span style="color:var(--px-cyan-text)"><img src="{% static 'img/Student-Tribe-Transparent.png' %}" alt="Student Tribe"></span></a>
+            <a class="px-partner" href="https://stucred.flyy.in/83EG6ER" target="_blank" rel="noopener">CR Partner: <span style="color:var(--px-green-text)"><img src="{% static 'img/stucred.png' %}" alt="StuCred"></span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="px-section tint-b" id="faq">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>Frequently Asked Questions</h2>
+            <div class="px-divider"></div>
+            <p class="px-kicker">[ ALL YOU NEED TO KNOW ABOUT BEING A COLLEGE REPRESENTATIVE ]</p>
+        </div>
+        <div class="px-faq">
+            <details class="px-reveal">
+                <summary><span>What is an Aakaar College Representative (CR)?</span><span class="px-plus">+</span></summary>
+                <p>A College Representative is an official ambassador of Aakaar, IIT Bombay within their own university or institute. They lead the student delegation, disseminate technical updates, publicize competitions, and facilitate campus participation.</p>
+            </details>
+            <details class="px-reveal">
+                <summary><span>What are the eligibility requirements?</span><span class="px-plus">+</span></summary>
+                <p>Any registered college student enrolled in undergraduate, postgraduate, or diploma programs in Engineering, Architecture, Construction, or Allied Sciences is eligible to register. Passion for networking and technical leadership is all you need!</p>
+            </details>
+            <details class="px-reveal">
+                <summary><span>What is the duration of the CR tenure?</span><span class="px-plus">+</span></summary>
+                <p>The program commences immediately upon registration confirmation and concludes with the grand offline fest of Aakaar 2026 at the IIT Bombay campus in March.</p>
+            </details>
+            <details class="px-reveal">
+                <summary><span>Is there any registration fee to apply as a CR?</span><span class="px-plus">+</span></summary>
+                <p>No. Applying and working as a College Representative for Aakaar, IIT Bombay is 100% free of charge.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT ORGANIZERS ============ -->
+<section class="px-section tint-a" id="contact" style="padding:3.5rem 0;">
+    <div class="px-shell px-reveal">
+        <div class="px-section-head">
+            <h2>Contact Organizers</h2>
+            <div class="px-divider"></div>
+            <p class="px-kicker">[ MEDIA &amp; PUBLICITY MANAGERS &bull; AAKAAR 2026, IIT BOMBAY ]</p>
+        </div>
+        <div class="px-gap-grid px-cols-3" style="gap:1.5rem;">
+            <div class="px-card">
+                <div class="d-flex align-items-center px-identity mb-3">
+                    <span class="px-contact-avatar">KB</span>
+                    <div>
+                        <div class="fw-bold text-white" style="font-size:.86rem">Karthikesh Bangi</div>
+                        <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
+                    </div>
+                </div>
+                <div class="pt-3 d-grid gap-2" style="border-top:2px solid var(--px-line);font-size:.74rem;">
+                    <span><span aria-hidden="true">&#128222;</span> <a href="tel:8639398805" class="fw-bold">+91 8639398805</a></span>
+                    <span><span aria-hidden="true">&#9993;&#65039;</span> <a href="mailto:karthikesh@aakaariitb.org.in" style="color:var(--px-ink-dim)">karthikesh@aakaariitb.org.in</a></span>
+                </div>
+            </div>
+            <div class="px-card">
+                <div class="d-flex align-items-center px-identity mb-3">
+                    <span class="px-contact-avatar">NS</span>
+                    <div>
+                        <div class="fw-bold text-white" style="font-size:.86rem">Nancy Soni</div>
+                        <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
+                    </div>
+                </div>
+                <div class="pt-3 d-grid gap-2" style="border-top:2px solid var(--px-line);font-size:.74rem;">
+                    <span><span aria-hidden="true">&#128222;</span> <a href="tel:9256223509" class="fw-bold">+91 9256223509</a></span>
+                    <span><span aria-hidden="true">&#9993;&#65039;</span> <a href="mailto:nancy@aakaariitb.org.in" style="color:var(--px-ink-dim)">nancy@aakaariitb.org.in</a></span>
+                </div>
+            </div>
+            <div class="px-card">
+                <div class="d-flex align-items-center px-identity mb-3">
+                    <span class="px-contact-avatar">SM</span>
+                    <div>
+                        <div class="fw-bold text-white" style="font-size:.86rem">Sneha Maldode</div>
+                        <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
+                    </div>
+                </div>
+                <div class="pt-3 d-grid gap-2" style="border-top:2px solid var(--px-line);font-size:.74rem;">
+                    <span><span aria-hidden="true">&#128222;</span> <a href="tel:9588446474" class="fw-bold">+91 9588446474</a></span>
+                    <span><span aria-hidden="true">&#9993;&#65039;</span> <a href="mailto:sneha@aakaariitb.org.in" style="color:var(--px-ink-dim)">sneha@aakaariitb.org.in</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ NIGHT MODE SPECIFICATION DOCK (design signature from A) ============ -->
+<section class="px-section" id="spec-dock" style="background:var(--px-bg-deep);padding:3rem 0;font-size:.72rem;">
+    <div class="px-shell px-reveal">
+        <div class="px-spec">
+            <div class="px-spec-head">
+                <div class="d-flex align-items-center" style="gap:.6rem;">
+                    <span class="neon-dot"></span>
+                    <span class="font-pixel" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--px-yellow-text)">Retro Night Mode Specification &amp; Keyframes</span>
+                </div>
+                <span class="px-tag" style="color:var(--px-cyan);border-color:var(--px-cyan);">ENGINE_STATUS: COMPILED</span>
+            </div>
+            <div class="px-spec-grid">
+                <div class="px-spec-token">
+                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Background Token</div>
+                    <div class="px-swatch-row"><span class="px-swatch" style="background:#0c0e14"></span><span class="px-token-name">#0C0E14</span></div>
+                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Deep obsidian CRT terminal background</p>
+                </div>
+                <div class="px-spec-token">
+                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Surface Token</div>
+                    <div class="px-swatch-row"><span class="px-swatch" style="background:#161822"></span><span class="px-token-name">#161822</span></div>
+                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Brutalist slate component shells</p>
+                </div>
+                <div class="px-spec-token">
+                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Neon Amber Accent</div>
+                    <div class="px-swatch-row"><span class="px-swatch" style="background:#FFD026"></span><span class="px-token-name" style="color:var(--px-yellow-text)">#FFD026</span></div>
+                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">High-contrast active badges &amp; CTAs</p>
+                </div>
+                <div class="px-spec-token">
+                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Cyber Green &amp; Cyan</div>
+                    <div class="px-swatch-row"><span class="px-swatch" style="background:#00FF66"></span><span class="px-token-name" style="color:var(--px-green-text)">#00FF66 / #24FFCD</span></div>
+                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Terminal status &amp; score tier ranks</p>
+                </div>
+            </div>
+            <div class="mt-4 pt-3" style="border-top:1px solid var(--px-line);background:var(--px-bg);padding:.8rem;color:var(--px-ink-dim);overflow-x:auto;">
+                <div class="fw-bold mb-1" style="color:var(--px-cyan-text)">/* Active Keyframe Protocols */</div>
+                <code style="font-size:.66rem;">@keyframes pixelPulse { 0%, 100%: opacity 1, drop-shadow(0 0 4px #00FF66); 50%: opacity 0.4; }</code><br>
+                <code style="font-size:.66rem;">@keyframes neonGlow { 0%, 100%: box-shadow 0 0 12px rgba(255,208,38,0.4); 50%: 0 0 22px rgba(255,208,38,0.75); }</code><br>
+                <code style="font-size:.66rem;">@keyframes crtScanline { 0%: translateY(-100%); 100%: translateY(1000%); }</code>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

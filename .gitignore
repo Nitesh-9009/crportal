@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Django local artifacts (never publish these)
+db.sqlite3
+media/
+staticfiles/
+.env
+
+# Logs & temp
+server.log
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.desktop-credentials-cache/
+
+# Freebuff workspace metadata
+.freebuff/

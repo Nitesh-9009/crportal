@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Sign In — Aakaar CR Portal 2026{% endblock %}
+
+{% block content %}
+<div class="px-shell" style="padding-top:4rem;">
+    <div class="px-window px-reveal" style="max-width:32rem;">
+        <div class="px-window-bar">
+            <span class="px-title"><span aria-hidden="true">&#128274;</span> GOOGLE_AUTH.exe</span>
+            <span style="display:inline-flex;gap:5px;"><span class="px-dot-red" style="width:11px;height:11px;border:1px solid #000;display:inline-block;"></span><span class="px-dot-yellow" style="width:11px;height:11px;border:1px solid #000;display:inline-block;"></span><span class="px-dot-green" style="width:11px;height:11px;border:1px solid #000;display:inline-block;"></span></span>
+        </div>
+        <div class="px-window-body px-center">
+            <h1 class="font-pixel" style="font-size:.85rem;color:#fff;line-height:1.8;">Sign in via Google</h1>
+            <p class="mt-3 mb-4" style="font-size:.8rem;color:var(--px-ink-dim);">You are about to sign in using a third-party account from Google.</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="px-btn" type="submit"><span>Continue</span><span class="font-pixel">&rarr;</span></button>
+            </form>
+            <div class="mt-4"><a href="{% url 'home' %}" class="px-kicker">&larr; Back to portal</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

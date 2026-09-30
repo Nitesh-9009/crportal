@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard — Aakaar CR Portal 2026{% endblock %}
+
+{% block content %}
+<div class="px-shell">
+    <div class="px-page-head px-reveal">
+        <span class="px-ribbon">&#9733; PLAYER PROFILE // SECTOR TELEMETRY</span>
+        <h1>Your <em>Momentum.</em></h1>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+            <a class="px-btn px-btn-sm" href="{% url 'tasks_page' %}"><span>Browse tasks</span><span class="font-pixel">&rarr;</span></a>
+            <a class="px-btn px-btn-sm px-btn-dark" href="{% url 'leaderboard' %}"><span>Scoreboard</span></a>
+        </div>
+    </div>
+
+    <!-- ============ PLAYER CARD ============ -->
+    <section class="px-card px-reveal" style="box-shadow:var(--shadow-hard);padding:1.6rem;">
+        <div class="px-corner-a"></div>
+        <div class="px-corner-b"></div>
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+            <div class="px-identity">
+                <span class="animal-avatar animal-avatar-profile avatar-{{ current_obj.avatar|default:'fox' }}" role="img" aria-label="{{ current_obj.get_avatar_display|default:'Fox' }} avatar"></span>
+                <div>
+                    <span class="px-tag">WELCOME BACK</span>
+                    <h2 class="font-pixel mt-2 mb-1" style="font-size:.95rem;color:#fff;">{{ user.first_name|default:user.username }}</h2>
+                    <p class="mb-1" style="font-size:.76rem;color:var(--px-ink-dim);">
+                        CR ID: <span style="color:var(--px-yellow-text)">{{ CRID|default:"Pending" }}</span>
+                        <span class="mx-2" style="color:var(--px-line)">|</span>
+                        {{ current_obj.colgName|default:"Complete your profile" }}
+                    </p>
+                    <p class="mb-0" style="font-size:.74rem;color:var(--px-ink-dim);">
+                        Join our WhatsApp group for updates —
+                        <a href="https://chat.whatsapp.com/HYEdsBfCN6n4LD8HdLg256" target="_blank" rel="noopener">open invite <i class="bi bi-arrow-up-right"></i></a>
+                    </p>
+                </div>
+            </div>
+            <button type="button" class="px-btn px-btn-sm px-btn-dark" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+                <i class="bi bi-pencil-square me-1"></i><span>Edit profile</span>
+            </button>
+        </div>
+
+        <div class="px-stat-rail mt-4">
+            <div class="px-stat">
+                <div class="px-stat-title">Your rank</div>
+                <div class="px-stat-value">#{{ rank }}</div>
+            </div>
+            <div class="px-stat">
+                <div class="px-stat-title">Your points</div>
+                <div class="px-stat-value">{{ points }}</div>
+            </div>
+            <div class="px-stat d-none d-md-block">
+                <div class="px-stat-title">Status</div>
+                <div class="px-stat-value" style="color:var(--px-green-text);font-size:.8rem;">ONLINE</div>
+            </div>
+            <div class="px-stat d-none d-md-block">
+                <div class="px-stat-title">Protocol</div>
+                <div class="px-stat-value" style="color:var(--px-cyan-text);font-size:.8rem;">SYNCED</div>
+            </div>
+            <div class="px-stat d-md-none">
+                <div class="px-stat-title">Protocol</div>
+                <div class="px-stat-value" style="color:var(--px-cyan-text);font-size:.8rem;">SYNCED</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MISSION LOG ============ -->
+    <section class="px-table-wrap mt-5 px-reveal">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+            <h3 class="font-pixel m-0" style="font-size:.78rem;color:#fff;">Tasks done by you</h3>
+            <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">{{ completed_tasks|length }} LOGGED</span>
+        </div>
+        <div class="table-responsive">
+            <table class="px-table">
+                <thead><tr><th>Task</th><th>Status</th><th style="text-align:right">Points</th></tr></thead>
+                <tbody>
+                    {% for submission in completed_tasks %}
+                    <tr>
+                        <td>
+                            <span class="text-white fw-bold">{{ submission.task.title }}</span>
+                            <div style="font-size:.7rem;color:var(--px-ink-dim);"><i class="bi bi-calendar3 me-1"></i>{{ submission.submitted_at|date:"d M Y" }}</div>
+                        </td>
+                        <td>
+                            {% if submission.graded %}
+                                <span class="px-pill px-pill-ok"><i class="bi bi-check-circle"></i>Graded</span>
+                            {% else %}
+                                <span class="px-pill px-pill-pending"><i class="bi bi-clock"></i>Pending review</span>
+                            {% endif %}
+                        </td>
+                        <td style="text-align:right;">
+                            <span class="px-points" style="display:inline-block;">{{ submission.marks }}</span>
+                            <small style="color:var(--px-ink-dim);display:block;font-size:.62rem;">points</small>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="px-center py-5">
+                            <div class="font-pixel" style="font-size:1.6rem;color:var(--px-line);">&#9633;</div>
+                            <p class="mb-1 mt-3" style="color:var(--px-ink-dim);">You haven't submitted any tasks yet.</p>
+                            <small style="color:var(--px-ink-dim);">Start completing tasks to see your progress here.</small>
+                            <div class="mt-3"><a class="px-btn px-btn-sm" href="{% url 'tasks_page' %}"><span>Start a task</span><span class="font-pixel">&rarr;</span></a></div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<!-- ============ UPDATE PROFILE MODAL (Django form logic unchanged) ============ -->
+<div class="modal fade" id="updateProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="px-window-bar" style="border-bottom:0;">
+                <span class="px-title"><span aria-hidden="true">&#128421;&#65039;</span> CR_PROFILE_EDITOR.exe</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:invert(1);"></button>
+            </div>
+            <div class="modal-header" style="border-top:2px solid var(--px-line);">
+                <h5 class="modal-title">Update your profile</h5>
+            </div>
+            <div class="modal-body px-window-body">
+                <form action="{% url 'updateProfile' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset class="px-avatar-picker">
+                        <legend>Choose your avatar</legend>
+                        <p>Your avatar appears beside your name and on the leaderboard.</p>
+                        <div class="px-avatar-grid">
+                            <label><input type="radio" name="avatar" value="rhino-orange" {% if current_obj.avatar == 'rhino-orange' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-rhino-orange"></span><small>Rhino</small></span></label>
+                            <label><input type="radio" name="avatar" value="black-bear" {% if current_obj.avatar == 'black-bear' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-black-bear"></span><small>Black bear</small></span></label>
+                            <label><input type="radio" name="avatar" value="koala" {% if current_obj.avatar == 'koala' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-koala"></span><small>Koala</small></span></label>
+                            <label><input type="radio" name="avatar" value="brown-bear" {% if current_obj.avatar == 'brown-bear' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-brown-bear"></span><small>Brown bear</small></span></label>
+                            <label><input type="radio" name="avatar" value="owl" {% if current_obj.avatar == 'owl' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-owl"></span><small>Owl</small></span></label>
+                            <label><input type="radio" name="avatar" value="deer" {% if current_obj.avatar == 'deer' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-deer"></span><small>Deer</small></span></label>
+                            <label><input type="radio" name="avatar" value="raccoon" {% if current_obj.avatar == 'raccoon' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-raccoon"></span><small>Raccoon</small></span></label>
+                            <label><input type="radio" name="avatar" value="fox" {% if current_obj.avatar == 'fox' or not current_obj.avatar %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-fox"></span><small>Fox</small></span></label>
+                            <label><input type="radio" name="avatar" value="rhino-green" {% if current_obj.avatar == 'rhino-green' %}checked{% endif %}><span class="px-avatar-choice"><span class="animal-avatar avatar-rhino-green"></span><small>Rhino</small></span></label>
+                        </div>
+                    </fieldset>
+                    <div class="mb-3"><label class="form-label" for="pfName">Name <span style="color:var(--px-coral-text)">*</span></label><input type="text" class="form-control" id="pfName" name="names" value="{{ current_obj.names }}" required></div>
+                    <div class="mb-3"><label class="form-label" for="pfCollege">College name <span style="color:var(--px-coral-text)">*</span></label><input type="text" class="form-control" id="pfCollege" name="colName" value="{{ current_obj.colgName }}" required></div>
+                    <div class="mb-3"><label class="form-label" for="pfState">State <span style="color:var(--px-coral-text)">*</span></label><input type="text" class="form-control" id="pfState" name="state" value="{{ current_obj.state }}" required></div>
+                    <div class="mb-3"><label class="form-label" for="pfPhone">Phone number <span style="color:var(--px-coral-text)">*</span></label><input type="tel" class="form-control" id="pfPhone" name="phoneNo" value="{{ current_obj.mobileNo }}" pattern="[0-9]{10}" required></div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="px-btn px-btn-block"><span>Save changes</span><i class="bi bi-check-lg"></i></button>
+                        <button type="button" class="px-btn px-btn-dark px-btn-block" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
