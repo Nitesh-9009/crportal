@@ -587,7 +587,6 @@ html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var
 .px-reward-emblem .px-reward-cutout { fill: var(--px-surface-alt); }
 .px-reward-emblem .px-reward-mark { fill: #000; }
 .px-reward-emblem--swag .px-reward-fill { fill: var(--px-cyan); }
-.px-reward-emblem--swag .px-reward-mark { fill: var(--px-cyan-text); }
 .px-reward-emblem--pass .px-reward-fill { fill: var(--px-green); }
 html[data-theme="dark"] .px-reward-emblem { background: var(--px-chip); }
 html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-surface); }
