@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Leaderboard — Aakaar CR Portal 2026{% endblock %}
+{% block title %}Leaderboard — Aakaar CR Portal 2027{% endblock %}
 
 {% block content %}
 <div class="px-shell">
     <div class="px-page-head px-reveal">
-        <span class="px-ribbon">&#9733; HIGH SCORES // LIVE ARCADE TERMINAL</span>
+        <span class="px-ribbon">&#9733; CR LEADERBOARD // AAKAAR IIT BOMBAY</span>
         <h1>Who is <em>moving up?</em></h1>
         <p class="px-lead mt-2">See the CRs turning curiosity into momentum. Scores are calculated from graded submissions.</p>
         <div class="mt-3"><a class="px-btn px-btn-sm" href="{% url 'tasks_page' %}"><span>Earn points</span><span class="font-pixel">&rarr;</span></a></div>
@@ -13,7 +13,7 @@
 
     <section class="px-table-wrap scanlines px-reveal">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-            <h2 class="font-pixel m-0" style="font-size:.8rem;color:#fff;">TOP 30 — SEASON 2026</h2>
+            <h2 class="font-pixel m-0" style="font-size:.8rem;color:var(--px-headline);">TOP 30 — SEASON 2027</h2>
             <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">LIVE // SYNCED</span>
         </div>
         <div class="table-responsive">
@@ -25,21 +25,23 @@
                     {% for data in leaderboard_data %}
                     <tr>
                         <td class="px-rank">
+                            <span class="px-score-chip">
                             {% if forloop.counter == 1 %}#01 &#128081;
                             {% elif forloop.counter == 2 %}#02 &#129351;
                             {% elif forloop.counter == 3 %}#03 &#129352;
                             {% else %}#{{ forloop.counter|stringformat:"02d" }}{% endif %}
+                            </span>
                         </td>
                         <td>
                             <div class="px-identity">
                                 <span class="animal-avatar avatar-{{ data.avatar }}" role="img" aria-label="{{ data.name }}'s avatar"></span>
                                 <div>
-                                    <div class="text-white fw-bold" style="font-size:.84rem;">{{ data.name }}</div>
+                                    <div class="fw-bold" style="font-size:.84rem;color:var(--px-ink);">{{ data.name }}</div>
                                     <div style="font-size:.72rem;color:var(--px-ink-dim);">{{ data.college }}</div>
                                 </div>
                             </div>
                         </td>
-                        <td style="text-align:right;"><span class="px-points" style="display:inline-block;">{{ data.score }} XP</span></td>
+                        <td style="text-align:right;"><span class="px-score-chip">{{ data.score }} XP</span></td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -54,7 +56,7 @@
         </div>
         <div class="mt-3 pt-3 d-flex justify-content-between flex-wrap gap-2" style="border-top:2px solid var(--px-line);font-size:.72rem;color:var(--px-ink-dim);">
             <span>Points update as tasks are graded.</span>
-            <span class="font-pixel" style="font-size:9px;color:var(--px-yellow-text);">LVL: 2026</span>
+            <span class="px-score-chip" style="font-size:9px;">LVL: 2027</span>
         </div>
     </section>
 </div>

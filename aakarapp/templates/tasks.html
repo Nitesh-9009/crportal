@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Tasks — Aakaar CR Portal 2026{% endblock %}
+{% block title %}Tasks — Aakaar CR Portal 2027{% endblock %}
 
 {% block content %}
 <div class="px-shell">
     <div class="px-page-head px-reveal">
-        <span class="px-ribbon">&#9733; MISSION BOARD // SECTOR TELEMETRY</span>
+        <span class="px-ribbon">&#9733; CR TASKS // AAKAAR IIT BOMBAY</span>
         <h1>Make it <em>count.</em></h1>
         <p class="px-lead mt-2">Complete tasks to earn points and climb the leaderboard. Keep an eye on the deadlines for each brief.</p>
         <div class="mt-3"><a class="px-btn px-btn-sm" href="{% url 'leaderboard' %}"><span>View scoreboard</span><span class="font-pixel">&rarr;</span></a></div>
@@ -69,7 +69,7 @@
         {% empty %}
         <div class="px-card px-center px-reveal" style="padding:3rem 1.5rem;">
             <div class="font-pixel" style="font-size:1.6rem;color:var(--px-line);">&#9203;</div>
-            <h2 class="font-pixel mt-3" style="font-size:.9rem;color:#fff;">No active tasks.</h2>
+            <h2 class="font-pixel mt-3" style="font-size:.9rem;color:var(--px-headline);">No active tasks.</h2>
             <p class="mb-0" style="color:var(--px-ink-dim);font-size:.84rem;">Check back later for the next brief.</p>
         </div>
         {% endfor %}

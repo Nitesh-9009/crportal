@@ -1,17 +1,21 @@
 /* ============================================================
    AAKAAR CR PORTAL — NEO-PIXEL CYBER-BRUTALISM SKIN
-   Dual theme: DAY (default, warm graph-paper + arcade gold)
-   and NIGHT (retro CRT terminal). Tokens follow the Stitch
+   Dual theme: LIGHT (default, warm graph-paper + arcade gold)
+   and DARK (retro CRT terminal). Tokens follow the Stitch
    design kit (website A): neo_pixel_cyber_brutalism DESIGN.md
-   for day, aakaar_iit_bombay_cr_portal_night_mode_edition for
-   night. Theme is switched via <html data-theme="day|night">.
+   for light, aakaar_iit_bombay_cr_portal_night_mode_edition for
+   dark. Theme is switched via <html data-theme="light|dark">.
    ============================================================ */
 
-/* ---------- Design tokens: DAY (default) ---------- */
+/* ---------- Design tokens: LIGHT (default) ---------- */
 :root {
-  --px-yellow: #FFCC00;        /* arcade gold — fills */
-  --px-yellow-light: #ffe08b;
-  --px-yellow-text: #8a6d00;   /* gold-as-text on light surfaces */
+  --px-yellow: #FFD026;        /* THE Aakaar gold — single brand yellow */
+  --px-yellow-light: #FFD026;
+  --px-yellow-text: #FFD026;   /* yellow-as-text always sits on an ink plate */
+  --px-gold-strip: #FFD026;    /* solid gold plaque (avatar profile strip) */
+  --px-gold-strip-ink: #1c1b1b;
+  --px-gold-strip-dim: rgba(28, 27, 27, .8);
+  --px-xp-ink: #555556;        /* small meta labels */
   --px-coral: #FF6B35;         /* retro neon orange — fills */
   --px-coral-text: #ab3500;
   --px-green: #39FF14;         /* neon green — fills */
@@ -29,14 +33,14 @@
   --px-ink: #1c1b1b;           /* carbon ink body text */
   --px-ink-dim: #4e4632;       /* on-surface-variant */
   --px-headline: #1c1b1b;
-  --px-em-text: #745b00;       /* surface-tint emphasis */
+  --px-em-text: #FFD026;       /* brand-yellow emphasis (on ink plates) */
 
   --px-border-ink: #1c1b1b;    /* hard neo-brutalist borders */
   --px-line: #d2c5ab;          /* soft drafting dividers */
   --px-shadow-ink: #1c1b1b;    /* hard offset shadow color */
 
   --px-tag-bg: #1c1b1b;
-  --px-tag-ink: #FFCC00;
+  --px-tag-ink: #FFD026;
   --px-bar-bg: #1c1b1b;        /* terminal window bars */
   --px-btn2-bg: #ffffff;       /* secondary button */
   --px-btn2-ink: #1c1b1b;
@@ -46,14 +50,14 @@
   --px-grid-x: rgba(28, 27, 27, .06);
   --px-grid-y: rgba(28, 27, 27, .06);
   --px-close-filter: none;
-  --px-scan: none;             /* CRT scanlines off in day */
+  --px-scan: none;             /* CRT scanlines off in light mode */
 
   --font-display: 'Press Start 2P', monospace;
   --font-pixel-caps: 'Press Start 2P', monospace;
   --font-silk: 'Silkscreen', monospace;
   --font-mono: 'Space Mono', 'Courier New', monospace;
 
-  /* Typography rhythm is shared with night mode; only colors differ. */
+  /* Typography rhythm is shared with dark mode; only colors differ. */
   --h3-size: .82rem;
   --task-title-size: .95rem;
   --stat-size: clamp(.9rem, 2.2vw, 1.3rem);
@@ -66,11 +70,15 @@
   --shadow-hard: 8px 8px 0 var(--px-shadow-ink);
 }
 
-/* ---------- Design tokens: NIGHT ---------- */
-html[data-theme="night"] {
+/* ---------- Design tokens: DARK ---------- */
+html[data-theme="dark"] {
   --px-yellow: #FFD026;
-  --px-yellow-light: #FEE588;
+  --px-yellow-light: #FFD026;
   --px-yellow-text: #FFD026;
+  --px-gold-strip: #1f2333;
+  --px-gold-strip-ink: #FFD026;
+  --px-gold-strip-dim: #9aa0b5;
+  --px-xp-ink: #9aa0b5;
   --px-coral: #F24E1E;
   --px-coral-text: #ff7a52;
   --px-green: #00FF66;
@@ -141,11 +149,11 @@ body {
 ::-webkit-scrollbar-track { background: var(--px-bg); border-left: 2px solid var(--px-line); }
 ::-webkit-scrollbar-thumb { background: var(--px-yellow); border: 2px solid var(--px-border-ink); }
 
-html[data-theme="night"] img { image-rendering: pixelated; }
+html[data-theme="dark"] img { image-rendering: pixelated; }
 img.px-smooth { image-rendering: auto; }
 
 a { color: var(--px-cyan-text); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--px-yellow-text); }
+a:hover { color: var(--px-coral-text); }
 
 .font-pixel { font-family: var(--font-display); }
 .font-silk  { font-family: var(--font-silk); }
@@ -235,11 +243,11 @@ a:hover { color: var(--px-yellow-text); }
 }
 
 .px-badge-glow { animation: pxGlow 2.5s infinite ease-in-out; }
-html[data-theme="day"] .px-badge-glow { animation: none; }
+html[data-theme="light"] .px-badge-glow { animation: none; }
 
-/* CRT scanline overlay — night only */
+/* CRT scanline overlay — dark mode only */
 .scanlines { position: relative; overflow: hidden; }
-html[data-theme="night"] .scanlines::after {
+html[data-theme="dark"] .scanlines::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -255,6 +263,23 @@ html[data-theme="night"] .scanlines::after {
 /* Reveal on scroll */
 .px-reveal { opacity: 0; transform: translateY(14px); transition: opacity .45s steps(6), transform .45s steps(6); }
 .motion-ready .px-reveal.is-visible { opacity: 1; transform: none; }
+/* ---------- Responsive safety nets ---------- */
+/* Window bars (dashboard, cards, modals): let long titles wrap instead of forcing width */
+.px-window-bar { flex-wrap: wrap; }
+.px-window-bar .px-title { min-width: 0; overflow-wrap: anywhere; }
+.px-window-bar .px-dots { flex-shrink: 0; }
+.px-shell { max-width: 100%; }
+/* Ultra-small phones: tighten the header so logo + toggle + burger always fit */
+@media (max-width: 359.98px) {
+  .px-header-inner { gap: .4rem; padding: .5rem .6rem; }
+  .px-logo { font-size: .78rem; }
+  .px-mode-toggle { padding: .35rem .55rem; font-size: .68rem; gap: .3rem; }
+  .px-mode-toggle .px-mode-icon { font-size: .95rem; }
+  .px-mode-toggle #pxModeLabel { display: none; }   /* icon-only toggle on tiny screens */
+  .px-burger { width: 40px; height: 40px; }
+}
+/* Very narrow screens: stack dashboard stat cards full-width (kept after the base .px-stat-rail rule so the cascade resolves here) */
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .px-reveal { opacity: 1; transform: none; transition: none; }
@@ -299,7 +324,7 @@ html[data-theme="night"] .scanlines::after {
   border: 2px solid var(--px-yellow);
   box-shadow: var(--shadow-sm);
 }
-.px-btn-ghost:hover { background: var(--px-surface-alt); color: var(--px-em-text) !important; transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
+.px-btn-ghost:hover { background: var(--px-bar-bg); color: var(--px-yellow) !important; transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
 
 .px-btn-green { background: var(--px-green); color: #000 !important; }
 .px-btn-green:hover { background: var(--px-cyan); color: #000 !important; }
@@ -337,8 +362,8 @@ html[data-theme="night"] .scanlines::after {
 .px-logo { display: inline-flex; align-items: center; text-decoration: none !important; color: var(--px-headline); }
 .px-logo svg { height: 42px; width: auto; }
 .px-logo img { height: 44px; width: auto; display: block; }
-/* The logo artwork is white — mount it on an ink plate in day mode */
-html[data-theme="day"] .px-logo {
+/* The logo artwork is white — mount it on an ink plate in light mode */
+html[data-theme="light"] .px-logo {
   background: #1c1b1b;
   border: 2px solid #1c1b1b;
   box-shadow: 3px 3px 0 rgba(28, 27, 27, .25);
@@ -371,17 +396,17 @@ html[data-theme="day"] .px-logo {
   transition: all 100ms steps(2);
 }
 .px-tab svg { width: 15px; height: 15px; }
-.px-tab:hover { color: var(--px-em-text); transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
+.px-tab:hover { background: var(--px-bar-bg); color: var(--px-yellow); transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
 .px-tab.active {
   background: var(--px-yellow);
   color: #000;
 }
-html[data-theme="night"] .px-tab { background: var(--px-chip); color: #fff; }
-html[data-theme="night"] .px-tab.active { background: var(--px-yellow); color: #000; }
+html[data-theme="dark"] .px-tab { background: var(--px-chip); color: #fff; }
+html[data-theme="dark"] .px-tab.active { background: var(--px-yellow); color: #000; }
 
 .px-header-actions { display: flex; align-items: center; gap: .75rem; }
 
-/* Day/Night toggle (replaces the old static chip) */
+/* Light/Dark toggle (replaces the old static chip) */
 .px-mode-toggle {
   display: inline-flex;
   align-items: center;
@@ -401,7 +426,7 @@ html[data-theme="night"] .px-tab.active { background: var(--px-yellow); color: #
 }
 .px-mode-toggle:hover { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
 .px-mode-toggle .px-mode-icon { font-size: .8rem; line-height: 1; }
-html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: var(--px-yellow); border-color: var(--px-yellow); }
+html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var(--px-yellow); border-color: var(--px-yellow); }
 
 /* Mobile burger + drawer */
 .px-burger {
@@ -452,7 +477,13 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
   text-transform: uppercase;
   margin: .8rem 0;
 }
-.px-page-head h1 em { font-style: normal; color: var(--px-em-text); }
+.px-page-head h1 em {
+  font-style: normal;
+  color: var(--px-yellow);
+  background: var(--px-bar-bg);
+  padding: 0 .35rem;
+  box-shadow: 3px 3px 0 var(--px-shadow-ink);
+}
 .px-page-head .px-lead { color: var(--px-ink-dim); max-width: 46rem; margin: 0; }
 
 /* ---------- Sections ---------- */
@@ -533,8 +564,8 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 
 .px-ribbon {
   display: inline-block;
-  background: var(--px-surface-alt);
-  color: var(--px-em-text);
+  background: var(--px-yellow);
+  color: #000;
   border: 2px solid var(--px-border-ink);
   box-shadow: var(--shadow-sm);
   padding: .4rem 1rem;
@@ -553,10 +584,15 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 }
 
 .px-hero-sub {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: .6rem;
-  color: var(--px-em-text);
+  width: fit-content;
+  background: var(--px-bar-bg);
+  color: var(--px-yellow);
+  border: 2px solid var(--px-border-ink);
+  box-shadow: var(--shadow-sm);
+  padding: .5rem .8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -579,6 +615,11 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 
 /* Pixel avatar frame (hero card with window chrome) */
 .px-frame-wrap { position: relative; }
+@media (max-width: 575.98px) {
+  .px-frame-wrap { margin-top: 2.2rem; }
+  .px-frame-badge { font-size: 10px; padding: .45rem .7rem; top: -14px; }
+  .px-mini-card { max-width: 220px; padding: .6rem .7rem; }
+}
 .px-frame-badge {
   position: absolute;
   top: -18px;
@@ -620,21 +661,29 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 .px-dot-yellow { background: #facc15; }
 .px-dot-green  { background: var(--px-green); }
 
-.px-frame-body { padding: .75rem; background: var(--px-bg); }
-.px-frame-body img { width: 100%; height: auto; display: block; border: 2px solid var(--px-border-ink); }
+/* Card body is a white mat around the gold sprite (design: reference hero card) */
+.px-frame-body { padding: .8rem .8rem 1.9rem; background: var(--px-surface); }
+.px-frame-body img { width: 100%; height: auto; display: block; border: 3px solid var(--px-border-ink); border-radius: 10px; }
 
 .px-frame-foot {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: .5rem;
-  padding: .7rem .85rem;
-  border-top: 2px solid var(--px-line);
-  background: var(--px-surface);
+  padding: .7rem .9rem;
+  border-top: 2px solid var(--px-border-ink);
+  background: var(--px-bar-bg);
   font-size: .74rem;
   color: var(--px-ink-dim);
 }
 .px-frame-foot .px-status { color: var(--px-green-text); font-weight: 700; display: inline-flex; align-items: center; gap: .4rem; }
+.px-frame-foot .px-lvl {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+}
 
 .px-mini-card {
   position: absolute;
@@ -652,12 +701,12 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 }
 @media (min-width: 640px) { .px-mini-card { left: -22px; } }
 .px-mini-card .px-mini-title { font-family: var(--font-display); font-size: 10px; color: var(--px-headline); text-transform: uppercase; }
-.px-mini-card .px-mini-sub { font-size: 11px; font-weight: 700; color: var(--px-cyan-text); }
+.px-mini-card .px-mini-sub { font-size: 11px; font-weight: 700; color: var(--px-ink); }
 
 /* ---------- Stats ticker ---------- */
 .px-ticker {
-  background: var(--px-bg-deep);
-  color: var(--px-ink);
+  background: var(--px-bar-bg);
+  color: #fff;
   padding: 1rem 0;
   border-bottom: 2px solid var(--px-border-ink);
   font-weight: 700;
@@ -676,37 +725,72 @@ html[data-theme="night"] .px-mode-toggle { background: var(--px-chip); color: va
 }
 .px-ticker .px-t { display: inline-flex; align-items: center; gap: .5rem; }
 .px-ticker .px-arrow { font-family: var(--font-display); font-size: 11px; }
-.px-ticker .px-sep { color: var(--px-em-text); }
+.px-ticker .px-sep { color: var(--px-yellow); }
 
-/* ---------- XP bars ---------- */
-.px-xp { margin-bottom: 1.1rem; }
-.px-xp-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: .5rem;
+/* ---------- CR journey roadmap (About: relatable for every student) ---------- */
+.px-count { font-variant-numeric: tabular-nums; }
+
+.px-journey {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0 0 0 1.1rem;
+  border-left: 3px solid var(--px-border-ink);
+  display: grid;
+  gap: 1.15rem;
+}
+.px-jstep { display: flex; gap: .85rem; align-items: flex-start; }
+.px-jstep .px-jnum {
+  font-family: var(--font-display);
+  font-size: 10px;
+  background: var(--px-yellow);
+  color: #000;
+  border: 2px solid var(--px-border-ink);
+  box-shadow: 2px 2px 0 var(--px-shadow-ink);
+  padding: .4rem .5rem;
+  flex: 0 0 auto;
+}
+.px-jstep h5 {
+  font-family: var(--font-display);
+  font-size: .66rem;
+  line-height: 1.8;
+  text-transform: uppercase;
+  color: var(--px-headline);
+  margin: 0 0 .3rem;
+}
+.px-jstep p { font-size: .8rem; color: var(--px-ink-dim); margin: 0; }
+.px-journey-note {
+  margin-top: 1.5rem;
+  padding: .75rem .95rem;
+  background: var(--px-bar-bg);
+  color: var(--px-yellow);
+  border: 2px solid var(--px-border-ink);
   font-size: .74rem;
   font-weight: 700;
-  margin-bottom: .35rem;
 }
-.px-xp-head .px-chiplet {
-  font-family: var(--font-display);
-  font-size: 9px;
-  padding: 1px 5px;
-  border: 1px solid var(--px-border-ink);
-  margin-right: .45rem;
+
+/* ---------- Avatar profile card (About: portrait mat + gold plaque) ---------- */
+.px-portrait { position: relative; padding: .8rem .8rem 0; }
+.px-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 3px solid var(--px-border-ink);
+  border-radius: 10px;
 }
-.px-xp-track {
-  height: 20px;
-  background: var(--px-surface-alt);
-  border: 2px solid var(--px-border-ink);
-  padding: 2px;
+.px-portrait-tag {
+  position: absolute;
+  left: 1.45rem;
+  bottom: .75rem;
+  z-index: 7;
 }
-.px-xp-fill { height: 100%; border-right: 2px solid var(--px-border-ink); }
-.px-fill-yellow { background: var(--px-yellow); }
-.px-fill-cyan   { background: var(--px-cyan); }
-.px-fill-green  { background: var(--px-green); }
-.px-fill-coral  { background: var(--px-coral); }
+.px-tag-gold { color: var(--px-yellow); border-color: var(--px-yellow); }
+
+.px-gold-strip {
+  background: var(--px-gold-strip);
+  border: 3px solid var(--px-border-ink);
+}
+.px-gold-strip .px-gold-title { color: var(--px-gold-strip-ink); font-weight: 700; font-size: .8rem; }
+.px-gold-strip .px-gold-sub { color: var(--px-gold-strip-dim); font-size: .74rem; }
 
 /* ---------- Tables ---------- */
 .px-table-wrap {
@@ -725,8 +809,8 @@ table.px-table {
   margin: 0;
 }
 table.px-table thead tr {
-  background: var(--px-surface-alt);
-  color: var(--px-em-text);
+  background: var(--px-bar-bg);
+  color: var(--px-yellow);
   text-transform: uppercase;
   border-bottom: 2px solid var(--px-border-ink);
 }
@@ -736,7 +820,7 @@ table.px-table th {
   font-size: .72rem;
   letter-spacing: .06em;
   border: 0;
-  color: var(--px-em-text);
+  color: var(--px-yellow);
 }
 table.px-table td {
   padding: .85rem 1rem;
@@ -747,10 +831,19 @@ table.px-table td {
 }
 table.px-table tbody tr { transition: background 100ms; }
 table.px-table tbody tr:hover { background: var(--px-surface-alt); }
-table.px-table .px-rank { font-family: var(--font-display); font-size: 12px; color: var(--px-yellow-text); white-space: nowrap; }
+table.px-table .px-rank { font-family: var(--font-display); font-size: 12px; color: var(--px-yellow); white-space: nowrap; }
+.px-score-chip {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--px-yellow);
+  background: var(--px-bar-bg);
+  border: 1px solid var(--px-border-ink);
+  padding: 3px 7px;
+}
 table.px-table tbody tr:nth-child(2) .px-rank { color: var(--px-cyan-text); }
 table.px-table tbody tr:nth-child(3) .px-rank { color: var(--px-green-text); }
-table.px-table .px-points { font-family: var(--font-display); font-size: 12px; color: var(--px-yellow-text); text-align: right; white-space: nowrap; }
+table.px-table .px-points { font-family: var(--font-display); font-size: 12px; color: var(--px-yellow); text-align: right; white-space: nowrap; }
 table.px-table .px-college { color: var(--px-ink-dim); }
 
 /* ---------- Status pills ---------- */
@@ -971,7 +1064,7 @@ input[type="file"]::file-selector-button {
 .modal-title {
   font-family: var(--font-display);
   font-size: var(--modal-title-size);
-  color: var(--px-em-text);
+  color: var(--px-ink);
   text-transform: uppercase;
   line-height: 1.8;
 }
@@ -1018,7 +1111,7 @@ input[type="file"]::file-selector-button {
   font-size: .72rem;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--px-em-text);
+  color: var(--px-ink);
   margin-bottom: .3rem;
 }
 .px-avatar-picker > p { font-size: .78rem; color: var(--px-ink-dim); margin-bottom: .8rem; }
@@ -1052,7 +1145,7 @@ input[type="file"]::file-selector-button {
 .px-avatar-grid label:hover .px-avatar-choice { border-color: var(--px-em-text); color: var(--px-ink); }
 .px-avatar-grid input:checked + .px-avatar-choice {
   border-color: var(--px-em-text);
-  background: rgba(255, 204, 0, .14);
+  background: rgba(255, 208, 38, .16);
   color: var(--px-ink);
   transform: translate(-2px, -2px);
   box-shadow: 2px 2px 0 var(--px-yellow);
@@ -1079,9 +1172,13 @@ input[type="file"]::file-selector-button {
   margin-bottom: .4rem;
 }
 .px-stat .px-stat-value {
+  display: inline-block;
   font-family: var(--font-display);
   font-size: var(--stat-size);
-  color: var(--px-em-text);
+  color: var(--px-yellow);
+  background: var(--px-bar-bg);
+  border: 2px solid var(--px-border-ink);
+  padding: .15rem .5rem;
 }
 
 /* ---------- Task cards ---------- */
@@ -1169,31 +1266,6 @@ input[type="file"]::file-selector-button {
 }
 .px-social:hover { background: var(--px-yellow); color: #000; border-color: var(--px-border-ink); transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
 
-/* ---------- Spec dock (design token footer section) ---------- */
-.px-spec {
-  background: var(--px-surface);
-  border: 3px solid var(--px-yellow);
-  box-shadow: var(--shadow-hard);
-  padding: 1.4rem;
-}
-.px-spec-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: .8rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 2px solid var(--px-line);
-}
-.px-spec-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-@media (min-width: 768px) { .px-spec-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 992px) { .px-spec-grid { grid-template-columns: repeat(4, 1fr); } }
-.px-spec-token { background: var(--px-bg); border: 1px solid var(--px-line); padding: .8rem; font-size: .7rem; }
-.px-spec-token .px-swatch-row { display: flex; align-items: center; gap: .5rem; margin-top: .3rem; }
-.px-spec-token .px-swatch { width: 16px; height: 16px; border: 1px solid var(--px-border-ink); display: inline-block; }
-.px-spec-token .px-token-name { font-family: var(--font-display); font-size: 11px; color: var(--px-headline); }
-
 /* ---------- Utility ---------- */
 .px-center { text-align: center; }
 .px-mt-2 { margin-top: 1.2rem; }
@@ -1211,4 +1283,11 @@ input[type="file"]::file-selector-button {
   gap: .6rem;
   font-size: .72rem;
   color: var(--px-ink-dim);
+}
+
+/* ---------- Very narrow screens: stack dashboard stat cards full-width ---------- */
+/* Kept at the end of the file so it wins the cascade over the base .px-stat-rail rule. */
+@media (max-width: 399.98px) {
+  .px-stat-rail { grid-template-columns: 1fr; }
+  .px-stat { min-width: 0; }
 }

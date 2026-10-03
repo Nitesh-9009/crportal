@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Aakaar CR Portal 2026 | Asia's Largest Civil Engineering Fest, IIT Bombay{% endblock %}
+{% block title %}Aakaar CR Portal 2027 | Asia's Largest Civil Engineering Fest, IIT Bombay{% endblock %}
 
 {% block content %}
 <!-- ============ HERO (design: website A) ============ -->
 <section class="px-hero" id="home">
     <div class="px-hero-grid">
         <div>
-            <span class="px-ribbon">&#9733; Welcome to Aakaar CR Portal 2026</span>
+            <span class="px-ribbon">&#9733; Welcome to Aakaar CR Portal 2027</span>
             <h1>Building Tomorrow's Leaders</h1>
             <p class="px-hero-sub">
                 <span>&#9654; Asia's Largest Civil Engineering Fest &bull; IIT Bombay</span>
@@ -32,30 +32,29 @@
             </div>
             <div class="px-hero-note">
                 <span class="neon-dot"></span>
-                <span>Online registrations open for batch 2025-26 [SECURE_SSL]</span>
+                <span>Online registrations open for batch 2025-26</span>
             </div>
         </div>
 
-        <div class="px-frame-wrap d-none d-md-block">
-            <div class="px-frame-badge px-badge-glow">4.2K+ Active CRs</div>
+        <div class="px-frame-wrap">
+            <div class="px-frame-badge px-badge-glow"><span class="px-count" data-to="4.2" data-decimals="1" data-suffix="K+">4.2K+</span> Active CRs</div>
             <div class="px-frame scanlines">
                 <div class="px-frame-bar">
-                    <span style="color:var(--px-yellow)">cr_avatar_night_v26.sprite</span>
+                    <span style="color:var(--px-yellow)">cr_avatar_v26.sprite</span>
                     <span class="px-dots"><span class="px-dot-red"></span><span class="px-dot-yellow"></span><span class="px-dot-green"></span></span>
                 </div>
                 <div class="px-frame-body">
-                    <img src="{% static 'img/px-avatar.png' %}" alt="16-bit pixel art avatar of a young Indian engineering student" class="px-smooth">
+                    <img src="{% static 'img/px-avatar.png' %}" alt="Aakaar campus ambassador avatar of a young Indian engineering student" class="px-smooth">
                 </div>
                 <div class="px-frame-foot">
-                    <span class="px-status"><span class="neon-dot"></span> STATUS: ONLINE</span>
-                    <span class="font-pixel" style="color:var(--px-yellow-text); font-size:10px;">SECTOR: IITB</span>
+                    <span class="px-lvl">LVL: 2027</span>
                 </div>
             </div>
             <div class="px-mini-card">
-                <span style="font-size:1.4rem" aria-hidden="true">&#127963;&#65039;</span>
+                <span style="font-size:1.4rem;color:#5a5a66" aria-hidden="true">&#127963;&#65039;</span>
                 <div>
-                    <div class="px-mini-title">1.2K+ Colleges</div>
-                    <div class="px-mini-sub">50+ Technical Events</div>
+                    <div class="px-mini-title"><span class="px-count" data-to="1.2" data-decimals="1" data-suffix="K+">1.2K+</span> Colleges</div>
+                    <div class="px-mini-sub"><span class="px-count" data-to="50" data-suffix="+">50+</span> Technical Events</div>
                 </div>
             </div>
         </div>
@@ -65,13 +64,13 @@
 <!-- ============ LIVE STATS TICKER ============ -->
 <section class="px-ticker" aria-label="Program reach">
     <div class="px-ticker-inner">
-        <span class="px-t"><span class="px-arrow" style="color:var(--px-green-text)">&#9654;</span> 4,200+ Active Ambassadors</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-green)">&#9654;</span> <span class="px-count" data-to="4200" data-suffix="+" data-indian="1">4,200+</span> Active Ambassadors</span>
         <span class="px-sep d-none d-md-inline">&#9632;</span>
-        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow-text)">&#9654;</span> 1,200+ Top Colleges Pan-India</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow)">&#9654;</span> <span class="px-count" data-to="1200" data-suffix="+" data-indian="1">1,200+</span> Top Colleges Pan-India</span>
         <span class="px-sep d-none d-md-inline">&#9632;</span>
-        <span class="px-t"><span class="px-arrow" style="color:var(--px-cyan-text)">&#9654;</span> 50+ Competitions &amp; Workshops</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-cyan)">&#9654;</span> <span class="px-count" data-to="50" data-suffix="+">50+</span> Competitions &amp; Workshops</span>
         <span class="px-sep d-none d-md-inline">&#9632;</span>
-        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow-text)">&#9654;</span> &#8377;5,00,000+ Prize Loot</span>
+        <span class="px-t"><span class="px-arrow" style="color:var(--px-yellow)">&#9654;</span> <span class="px-count" data-to="500000" data-prefix="&#8377;" data-suffix="+" data-indian="1">&#8377;5,00,000+</span> Prize Loot</span>
     </div>
 </section>
 
@@ -86,26 +85,24 @@
 
         <div class="px-gap-grid px-cols-2" style="align-items:start;">
             <div>
-                <div class="px-card" style="box-shadow:var(--shadow-hard)">
+                <div class="px-card px-about-card" style="box-shadow:var(--shadow-hard)">
                     <div class="px-corner-a"></div>
                     <div class="px-corner-b"></div>
-                    <div class="scanlines" style="border:2px solid #000;">
-                        <img src="{% static 'img/px-avatar.png' %}" alt="Aakaar campus ambassador pixel portrait" class="px-smooth" style="width:100%;display:block;">
-                        <span class="px-tag" style="position:absolute;left:8px;bottom:8px;z-index:7;border-color:var(--px-yellow-text);">IIT BOMBAY REP</span>
+                    <div class="px-portrait">
+                        <img src="{% static 'img/px-avatar.png' %}" alt="Aakaar campus ambassador portrait" class="px-smooth">
+                        <span class="px-tag px-tag-gold px-portrait-tag">IIT BOMBAY REP</span>
                     </div>
-                    <div class="mt-3 p-3" style="background:var(--px-surface-alt);border:2px solid #000;font-size:.76rem;">
-                        <div class="d-flex justify-content-between align-items-center fw-bold text-white flex-wrap gap-2">
-                            <span style="color:var(--px-yellow-text)">Aakaar Ambassador #2026</span>
-                            <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">READY</span>
+                    <div class="px-gold-strip mt-3 p-3">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                            <span class="px-gold-title">Aakaar Ambassador #2027</span>
+                            <span class="px-tag">READY</span>
                         </div>
-                        <p class="mt-1 mb-0" style="color:var(--px-ink-dim);font-size:.72rem;">
-                            Lead student delegations to IIT Bombay's civil engineering arena.
-                        </p>
+                        <p class="px-gold-sub mt-1 mb-0">Lead student delegations to IIT Bombay's civil engineering arena.</p>
                     </div>
                 </div>
             </div>
             <div>
-                <h3 class="font-pixel" style="font-size:1rem;color:#fff;">Hi, Welcome to Aakaar CR Network</h3>
+                <h3 class="font-pixel" style="font-size:1rem;color:var(--px-headline);">Hi, Welcome to Aakaar CR Network</h3>
                 <p class="mt-3" style="color:var(--px-ink-dim);font-size:.9rem;">
                     Aakaar's College Representative Program is the heartbeat of our outreach. We're on a mission to
                     inspire college students across India to discover the exciting world of Civil Engineering.
@@ -113,42 +110,43 @@
                     you won't find in classrooms.
                 </p>
                 <p style="color:var(--px-ink-dim);font-size:.9rem;">
-                    You will serve as the official link between <strong style="color:var(--px-yellow-text)">IIT Bombay</strong>
+                    You will serve as the official link between <strong style="background:var(--px-yellow);color:#000;padding:0 .3rem;">IIT Bombay</strong>
                     and your institution &mdash; spearheading events, driving participation, and building real-world
                     pedigree you won't find in textbooks.
                 </p>
                 <div class="mt-4 pt-4" style="border-top:2px solid var(--px-line);">
-                    <h4 class="font-pixel" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--px-yellow-text);">My Skills &amp; Level-Ups</h4>
-                    <div class="mt-4">
-                        <div class="px-xp">
-                            <div class="px-xp-head">
-                                <span><span class="px-chiplet px-fill-yellow">&lt;&gt;</span>Leadership &amp; Delegation Management</span>
-                                <span class="font-pixel" style="font-size:10px;color:var(--px-yellow-text)">95%</span>
+                    <h4 class="font-pixel" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--px-headline);border-bottom:3px solid var(--px-border-ink);padding-bottom:.7rem;">Your CR Journey &mdash; Step By Step</h4>
+                    <ol class="px-journey">
+                        <li class="px-jstep">
+                            <span class="px-jnum">01</span>
+                            <div>
+                                <h5>Register in 2 minutes &mdash; it's free</h5>
+                                <p>Any college, any branch, any year &mdash; diploma, UG or PG. No fees, no interviews, no CGPA cut-off. Just your details and you're in.</p>
                             </div>
-                            <div class="px-xp-track"><div class="px-xp-fill px-fill-yellow" style="width:95%"></div></div>
-                        </div>
-                        <div class="px-xp">
-                            <div class="px-xp-head">
-                                <span><span class="px-chiplet px-fill-cyan">&#128396;&#65039;</span>Campus Outreach &amp; Public Relations</span>
-                                <span class="font-pixel" style="font-size:10px;color:var(--px-cyan-text)">90%</span>
+                        </li>
+                        <li class="px-jstep">
+                            <span class="px-jnum">02</span>
+                            <div>
+                                <h5>Do simple campus quests</h5>
+                                <p>Share Aakaar updates with your batch, put up a poster, get your friends to register, host a small session. Each quest takes minutes and earns you points.</p>
                             </div>
-                            <div class="px-xp-track"><div class="px-xp-fill px-fill-cyan" style="width:90%"></div></div>
-                        </div>
-                        <div class="px-xp">
-                            <div class="px-xp-head">
-                                <span><span class="px-chiplet px-fill-green">&#128241;</span>Digital Marketing &amp; Growth Campaigns</span>
-                                <span class="font-pixel" style="font-size:10px;color:var(--px-green-text)">85%</span>
+                        </li>
+                        <li class="px-jstep">
+                            <span class="px-jnum">03</span>
+                            <div>
+                                <h5>Climb the leaderboard &amp; unlock rewards</h5>
+                                <p>Watch your rank rise against CRs from 1,200+ colleges and unlock your IIT Bombay certificate, exclusive merch and free masterclass passes.</p>
                             </div>
-                            <div class="px-xp-track"><div class="px-xp-fill px-fill-green" style="width:85%"></div></div>
-                        </div>
-                        <div class="px-xp">
-                            <div class="px-xp-head">
-                                <span><span class="px-chiplet px-fill-coral">&#129309;</span>Corporate Networking &amp; Event Production</span>
-                                <span class="font-pixel" style="font-size:10px;color:var(--px-coral-text)">88%</span>
+                        </li>
+                        <li class="px-jstep">
+                            <span class="px-jnum">04</span>
+                            <div>
+                                <h5>Lead your college at Aakaar 2027</h5>
+                                <p>Bring your delegation to Asia's largest civil engineering fest at IIT Bombay and represent your campus on the national stage.</p>
                             </div>
-                            <div class="px-xp-track"><div class="px-xp-fill px-fill-coral" style="width:88%"></div></div>
-                        </div>
-                    </div>
+                        </li>
+                    </ol>
+                    <p class="px-journey-note">Open to every student of every college &mdash; your campus needs a CR.</p>
                 </div>
             </div>
         </div>
@@ -217,10 +215,10 @@
             <div class="px-card px-reveal" style="padding:0;display:flex;flex-direction:column;">
                 <div style="background:var(--px-surface-alt);border-bottom:3px solid #000;padding:2rem;text-align:center;">
                     <div style="font-size:2.6rem" aria-hidden="true">&#128220;</div>
-                    <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-yellow-text)">IIT BOMBAY CREDENTIAL</div>
+                    <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-ink)">IIT BOMBAY CREDENTIAL</div>
                 </div>
                 <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">IIT Bombay Certificate</h3>
+                    <h3 class="font-pixel" style="font-size:.78rem;color:var(--px-headline);">IIT Bombay Certificate</h3>
                     <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Official Certificate of Appreciation endorsed by the Civil Engineering Association &amp; Aakaar, IIT Bombay to elevate your resume.</p>
                     <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
                         <span class="px-tag">#Official</span><span class="px-tag">#Verified</span><span class="px-tag">#CV_Boost</span>
@@ -234,7 +232,7 @@
                     <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-cyan-text)">EXCLUSIVE SWAG KIT</div>
                 </div>
                 <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">Exclusive Merchandise</h3>
+                    <h3 class="font-pixel" style="font-size:.78rem;color:var(--px-headline);">Exclusive Merchandise</h3>
                     <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Limited edition Aakaar IIT Bombay hoodies, custom pin badges, retro stickers, stationery, and engineer swag boxes delivered to top CRs.</p>
                     <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
                         <span class="px-tag" style="color:var(--px-cyan-text)">#Hoodies</span><span class="px-tag" style="color:var(--px-cyan-text)">#SwagKit</span><span class="px-tag" style="color:var(--px-cyan-text)">#Merch</span>
@@ -248,7 +246,7 @@
                     <div class="font-pixel mt-2" style="font-size:10px;color:var(--px-green-text)">PRO PASS ACCESS</div>
                 </div>
                 <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-pixel" style="font-size:.78rem;color:#fff;">Free Masterclasses &amp; Passes</h3>
+                    <h3 class="font-pixel" style="font-size:.78rem;color:var(--px-headline);">Free Masterclasses &amp; Passes</h3>
                     <p class="mt-2" style="color:var(--px-ink-dim);font-size:.78rem;">Complimentary access to premium BIM, GIS, Structural Analysis, and AI in Civil Engineering workshops taught by industry titans.</p>
                     <div class="d-flex flex-wrap gap-1 mb-4 mt-2">
                         <span class="px-tag" style="color:var(--px-green-text)">#Workshops</span><span class="px-tag" style="color:var(--px-green-text)">#Passes</span><span class="px-tag" style="color:var(--px-green-text)">#VIP</span>
@@ -266,7 +264,7 @@
         <div class="px-section-head">
             <h2>Top CR High Scores</h2>
             <div class="px-divider"></div>
-            <p class="px-kicker">[ REAL-TIME SCOREBOARD &bull; LIVE ARCADE TERMINAL RANKINGS ]</p>
+            <p class="px-kicker">[ REAL-TIME RANKINGS &bull; OFFICIAL AAKAAR CR LEADERBOARD ]</p>
         </div>
         <div class="px-table-wrap scanlines" style="max-width:56rem;margin:0 auto;">
             <div class="table-responsive">
@@ -277,10 +275,10 @@
                     <tbody>
                         {% for data in home_leaderboard %}
                         <tr>
-                            <td class="px-rank">{% if forloop.counter == 1 %}#01 &#128081;{% elif forloop.counter == 2 %}#02 &#129351;{% elif forloop.counter == 3 %}#03 &#129352;{% else %}#{{ forloop.counter|stringformat:"02d" }}{% endif %}</td>
-                            <td class="text-white fw-bold">{{ data.name }}</td>
+                            <td class="px-rank"><span class="px-score-chip">{% if forloop.counter == 1 %}#01 &#128081;{% elif forloop.counter == 2 %}#02 &#129351;{% elif forloop.counter == 3 %}#03 &#129352;{% else %}#{{ forloop.counter|stringformat:"02d" }}{% endif %}</span></td>
+                            <td class="fw-bold" style="color:var(--px-ink)">{{ data.name }}</td>
                             <td class="px-college">{{ data.college }}</td>
-                            <td class="px-points">{{ data.score }} XP</td>
+                            <td class="px-points"><span class="px-score-chip">{{ data.score }} XP</span></td>
                         </tr>
                         {% empty %}
                         <tr><td colspan="4" class="px-center py-4" style="color:var(--px-ink-dim)">[ NO SCORES LOGGED YET &mdash; BE THE FIRST TO COMPLETE A TASK ]</td></tr>
@@ -299,11 +297,10 @@
 <!-- ============ PARTNERS ============ -->
 <section class="px-section tint-c" id="sponsors" style="padding:3rem 0;">
     <div class="px-shell px-center px-reveal">
-        <h3 class="font-pixel mb-4" style="font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--px-yellow-text)">Official Partners &amp; Collaborators</h3>
+        <h3 class="font-pixel mb-4" style="font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--px-ink)">Official Partners &amp; Collaborators</h3>
         <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap:1.5rem;">
             <a class="px-partner" href="https://unstop.com" target="_blank" rel="noopener">Platform Partner: <span style="color:var(--px-coral-text)"><img src="{% static 'img/Unstop-Logo-Transparent.png' %}" alt="Unstop"></span></a>
             <a class="px-partner" href="https://www.studenttribe.in" target="_blank" rel="noopener">Outreach Partner: <span style="color:var(--px-cyan-text)"><img src="{% static 'img/Student-Tribe-Transparent.png' %}" alt="Student Tribe"></span></a>
-            <a class="px-partner" href="https://stucred.flyy.in/83EG6ER" target="_blank" rel="noopener">CR Partner: <span style="color:var(--px-green-text)"><img src="{% static 'img/stucred.png' %}" alt="StuCred"></span></a>
         </div>
     </div>
 </section>
@@ -327,7 +324,7 @@
             </details>
             <details class="px-reveal">
                 <summary><span>What is the duration of the CR tenure?</span><span class="px-plus">+</span></summary>
-                <p>The program commences immediately upon registration confirmation and concludes with the grand offline fest of Aakaar 2026 at the IIT Bombay campus in March.</p>
+                <p>The program commences immediately upon registration confirmation and concludes with the grand offline fest of Aakaar 2027 at the IIT Bombay campus in March.</p>
             </details>
             <details class="px-reveal">
                 <summary><span>Is there any registration fee to apply as a CR?</span><span class="px-plus">+</span></summary>
@@ -343,14 +340,14 @@
         <div class="px-section-head">
             <h2>Contact Organizers</h2>
             <div class="px-divider"></div>
-            <p class="px-kicker">[ MEDIA &amp; PUBLICITY MANAGERS &bull; AAKAAR 2026, IIT BOMBAY ]</p>
+            <p class="px-kicker">[ MEDIA &amp; PUBLICITY MANAGERS &bull; AAKAAR 2027, IIT BOMBAY ]</p>
         </div>
         <div class="px-gap-grid px-cols-3" style="gap:1.5rem;">
             <div class="px-card">
                 <div class="d-flex align-items-center px-identity mb-3">
                     <span class="px-contact-avatar">KB</span>
                     <div>
-                        <div class="fw-bold text-white" style="font-size:.86rem">Karthikesh Bangi</div>
+                        <div class="fw-bold" style="font-size:.86rem;color:var(--px-ink)">Karthikesh Bangi</div>
                         <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
                     </div>
                 </div>
@@ -363,7 +360,7 @@
                 <div class="d-flex align-items-center px-identity mb-3">
                     <span class="px-contact-avatar">NS</span>
                     <div>
-                        <div class="fw-bold text-white" style="font-size:.86rem">Nancy Soni</div>
+                        <div class="fw-bold" style="font-size:.86rem;color:var(--px-ink)">Nancy Soni</div>
                         <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
                     </div>
                 </div>
@@ -376,7 +373,7 @@
                 <div class="d-flex align-items-center px-identity mb-3">
                     <span class="px-contact-avatar">SM</span>
                     <div>
-                        <div class="fw-bold text-white" style="font-size:.86rem">Sneha Maldode</div>
+                        <div class="fw-bold" style="font-size:.86rem;color:var(--px-ink)">Sneha Maldode</div>
                         <div style="font-size:.7rem;color:var(--px-ink-dim)">Media &amp; Publicity Manager</div>
                     </div>
                 </div>
@@ -389,46 +386,4 @@
     </div>
 </section>
 
-<!-- ============ NIGHT MODE SPECIFICATION DOCK (design signature from A) ============ -->
-<section class="px-section" id="spec-dock" style="background:var(--px-bg-deep);padding:3rem 0;font-size:.72rem;">
-    <div class="px-shell px-reveal">
-        <div class="px-spec">
-            <div class="px-spec-head">
-                <div class="d-flex align-items-center" style="gap:.6rem;">
-                    <span class="neon-dot"></span>
-                    <span class="font-pixel" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--px-yellow-text)">Retro Night Mode Specification &amp; Keyframes</span>
-                </div>
-                <span class="px-tag" style="color:var(--px-cyan);border-color:var(--px-cyan);">ENGINE_STATUS: COMPILED</span>
-            </div>
-            <div class="px-spec-grid">
-                <div class="px-spec-token">
-                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Background Token</div>
-                    <div class="px-swatch-row"><span class="px-swatch" style="background:#0c0e14"></span><span class="px-token-name">#0C0E14</span></div>
-                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Deep obsidian CRT terminal background</p>
-                </div>
-                <div class="px-spec-token">
-                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Surface Token</div>
-                    <div class="px-swatch-row"><span class="px-swatch" style="background:#161822"></span><span class="px-token-name">#161822</span></div>
-                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Brutalist slate component shells</p>
-                </div>
-                <div class="px-spec-token">
-                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Neon Amber Accent</div>
-                    <div class="px-swatch-row"><span class="px-swatch" style="background:#FFD026"></span><span class="px-token-name" style="color:var(--px-yellow-text)">#FFD026</span></div>
-                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">High-contrast active badges &amp; CTAs</p>
-                </div>
-                <div class="px-spec-token">
-                    <div class="fw-bold text-uppercase" style="font-size:.62rem;color:var(--px-ink-dim)">Cyber Green &amp; Cyan</div>
-                    <div class="px-swatch-row"><span class="px-swatch" style="background:#00FF66"></span><span class="px-token-name" style="color:var(--px-green-text)">#00FF66 / #24FFCD</span></div>
-                    <p class="mt-1 mb-0" style="color:var(--px-ink-dim)">Terminal status &amp; score tier ranks</p>
-                </div>
-            </div>
-            <div class="mt-4 pt-3" style="border-top:1px solid var(--px-line);background:var(--px-bg);padding:.8rem;color:var(--px-ink-dim);overflow-x:auto;">
-                <div class="fw-bold mb-1" style="color:var(--px-cyan-text)">/* Active Keyframe Protocols */</div>
-                <code style="font-size:.66rem;">@keyframes pixelPulse { 0%, 100%: opacity 1, drop-shadow(0 0 4px #00FF66); 50%: opacity 0.4; }</code><br>
-                <code style="font-size:.66rem;">@keyframes neonGlow { 0%, 100%: box-shadow 0 0 12px rgba(255,208,38,0.4); 50%: 0 0 22px rgba(255,208,38,0.75); }</code><br>
-                <code style="font-size:.66rem;">@keyframes crtScanline { 0%: translateY(-100%); 100%: translateY(1000%); }</code>
-            </div>
-        </div>
-    </div>
-</section>
 {% endblock %}

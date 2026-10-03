@@ -12,11 +12,11 @@ if not User.objects.filter(username='admin').exists():
 
 # --- Tasks ---
 task_specs = [
-    ("TASK 1", "Share the official Aakaar 2026 poster on your WhatsApp status and Instagram story. Submit a screenshot link as proof.", 100),
+    ("TASK 1", "Share the official Aakaar 2027 poster on your WhatsApp status and Instagram story. Submit a screenshot link as proof.", 100),
     ("TASK 2", "Get your college's civil engineering department head's permission to put up the Aakaar banner. Submit a photo of the banner.", 150),
     ("TASK 3", "Organize a 30-minute intro session about Aakaar and the CR program in your class. Submit attendance proof or photos.", 200),
     ("TASK 4", "Bring a minimum of 5 registrations for Aakaar workshops from your college. Submit the registration list.", 250),
-    ("TASK 5", "Watch the instruction video and record a short campus promo reel for Aakaar 2026. Submit the reel link.", 300),
+    ("TASK 5", "Watch the instruction video and record a short campus promo reel for Aakaar 2027. Submit the reel link.", 300),
 ]
 tasks = {}
 for title, desc, points in task_specs:

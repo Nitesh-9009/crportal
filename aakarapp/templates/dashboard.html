@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Dashboard — Aakaar CR Portal 2026{% endblock %}
+{% block title %}Dashboard — Aakaar CR Portal 2027{% endblock %}
 
 {% block content %}
 <div class="px-shell">
     <div class="px-page-head px-reveal">
-        <span class="px-ribbon">&#9733; PLAYER PROFILE // SECTOR TELEMETRY</span>
+        <span class="px-ribbon">&#9733; CR PROFILE // AAKAAR IIT BOMBAY</span>
         <h1>Your <em>Momentum.</em></h1>
         <div class="d-flex flex-wrap gap-2 mt-3">
             <a class="px-btn px-btn-sm" href="{% url 'tasks_page' %}"><span>Browse tasks</span><span class="font-pixel">&rarr;</span></a>
@@ -22,9 +22,9 @@
                 <span class="animal-avatar animal-avatar-profile avatar-{{ current_obj.avatar|default:'fox' }}" role="img" aria-label="{{ current_obj.get_avatar_display|default:'Fox' }} avatar"></span>
                 <div>
                     <span class="px-tag">WELCOME BACK</span>
-                    <h2 class="font-pixel mt-2 mb-1" style="font-size:.95rem;color:#fff;">{{ user.first_name|default:user.username }}</h2>
+                    <h2 class="font-pixel mt-2 mb-1" style="font-size:.95rem;color:var(--px-headline);">{{ user.first_name|default:user.username }}</h2>
                     <p class="mb-1" style="font-size:.76rem;color:var(--px-ink-dim);">
-                        CR ID: <span style="color:var(--px-yellow-text)">{{ CRID|default:"Pending" }}</span>
+                        CR ID: <span class="px-score-chip">{{ CRID|default:"Pending" }}</span>
                         <span class="mx-2" style="color:var(--px-line)">|</span>
                         {{ current_obj.colgName|default:"Complete your profile" }}
                     </p>
@@ -66,7 +66,7 @@
     <!-- ============ MISSION LOG ============ -->
     <section class="px-table-wrap mt-5 px-reveal">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-            <h3 class="font-pixel m-0" style="font-size:.78rem;color:#fff;">Tasks done by you</h3>
+            <h3 class="font-pixel m-0" style="font-size:.78rem;color:var(--px-headline);">Tasks done by you</h3>
             <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">{{ completed_tasks|length }} LOGGED</span>
         </div>
         <div class="table-responsive">
@@ -76,7 +76,7 @@
                     {% for submission in completed_tasks %}
                     <tr>
                         <td>
-                            <span class="text-white fw-bold">{{ submission.task.title }}</span>
+                            <span class="fw-bold" style="color:var(--px-ink)">{{ submission.task.title }}</span>
                             <div style="font-size:.7rem;color:var(--px-ink-dim);"><i class="bi bi-calendar3 me-1"></i>{{ submission.submitted_at|date:"d M Y" }}</div>
                         </td>
                         <td>

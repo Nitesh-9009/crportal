@@ -1,19 +1,24 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.contrib import messages # <--- CHANGE 1: Import the messages framework
+from django.views.decorators.cache import never_cache
 
 # Import the new, refactored models
 from .models import TaskZero, Task, Submission
 
 # --- General Views ---
 
+@never_cache
 def home(request):
-    """Renders the main landing page."""
+    """Renders the main landing page. Never cached so the login/register
+    forms always ship a CSRF token that matches the current session."""
     # Top 5 preview for the home leaderboard section (same scoring as the
     # full leaderboard page, trimmed to 5 rows).
     users_with_scores = User.objects.filter(
@@ -78,11 +83,15 @@ def register_cr(request):
                 pincode=pincode, mobileNo=phone_no, whatsappNo=phone_no
             )
             
-            # --- CHANGE 3: Add a success message ---
-            messages.success(request, 'Registration successful! You can now log in.')
-            
-            # Redirect to the home page to show the success message and login form
-            return redirect('home')
+            # --- Smooth onboarding: sign the new CR in immediately and take
+            # them straight to their dashboard (no second login step, and no
+            # chance of bouncing through any backend/login page).
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            messages.success(
+                request,
+                f'Welcome to the Aakaar CR network, {full_name}! Your dashboard is ready.'
+            )
+            return redirect('dashboard')
 
         except IntegrityError:
             return render(request, 'home.html', {'error': 'A database error occurred.'})
@@ -97,18 +106,40 @@ def user_login(request):
         logout(request)
         
     if request.method == 'POST':
-        username_or_email = request.POST.get('username_or_email')
+        username_or_email = (request.POST.get('username_or_email') or '').strip()
         password = request.POST.get('password')
         
         user = authenticate(request, username=username_or_email, password=password)
         
+        if user is None and '@' in username_or_email:
+            # Email-based sign-in: the portal form and the password-reset flow
+            # both work with email addresses, so resolve the account by email
+            # (case-insensitive) and authenticate its username. Prefer a
+            # non-admin account if an admin happens to share the address.
+            match = (
+                get_user_model().objects
+                .filter(email__iexact=username_or_email, is_active=True, is_superuser=False)
+                .first()
+                or get_user_model().objects
+                .filter(email__iexact=username_or_email, is_active=True)
+                .first()
+            )
+            if match is not None:
+                user = authenticate(request, username=match.username, password=password)
+        
         if user is not None:
-            # --- NEW: Check if the user trying to log in is a superuser ---
+            # --- Admin accounts never log in through the student portal ---
+            # The CR portal is for campus representatives only. Admins manage
+            # the site from the Django admin panel at /admin/ (its own login
+            # page), so no student-facing login can ever open the backend.
             if user.is_superuser:
-                # Don't log them into the main site, send them to admin
-                messages.info(request, "Superuser login is via the admin panel.")
-                return redirect('/admin/')
-                
+                messages.info(
+                    request,
+                    'This is an admin account. Please sign in through the admin '
+                    'panel at /admin/ — the student portal is for CR accounts.'
+                )
+                return redirect('home')
+
             login(request, user)
             return redirect('dashboard')
         else:
@@ -123,6 +154,20 @@ def user_logout(request):
     """Logs the user out."""
     logout(request)
     return redirect('home')
+
+
+def csrf_failure(request, reason="", template_name=None):
+    """Friendly recovery for stale CSRF tokens. Logging in or out rotates
+    the token; forms rendered earlier (modal switches, other tabs, back/
+    forward navigation) would otherwise hit Django's raw 403 page. Send the
+    visitor back to the portal, which re-renders every form with a fresh
+    token, with a clear message."""
+    messages.info(
+        request,
+        'Your session refreshed while submitting. Please try again — the form '
+        'on this page now carries a fresh, valid token.'
+    )
+    return redirect(reverse('home'))
 
 # Find and replace the dashboard function in aakarapp/views.py
 
@@ -216,10 +261,21 @@ from django.utils import timezone
 from django.db.models import Q
 
 
+@never_cache
 def tasks_page(request):
     """
     Displays active tasks and handles submissions with validation.
+    Registered CRs only: anonymous visitors are sent back to the landing
+    page with the registration modal opened for them.
     """
+    if not request.user.is_authenticated:
+        messages.info(
+            request,
+            'The task board is for registered CRs. Log in with your account '
+            'or create a free one to see tasks and submit your work.'
+        )
+        return redirect(f"{reverse('home')}?register=1")
+
     if request.method == 'POST':
         task_id = request.POST.get('task_id')
         link = request.POST.get('link', '')

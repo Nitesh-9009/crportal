@@ -146,6 +146,10 @@ CSRF_TRUSTED_ORIGINS = env_list(
     'DJANGO_CSRF_TRUSTED_ORIGINS',
     'https://crportal.aakaariitb.org.in,https://www.crportal.aakaariitb.org.in',
 )
+# Logins/logouts rotate the CSRF token; if a form is submitted with an older
+# token (modal opened earlier, another tab, back/forward navigation) Django
+# would abort with a raw 403. Send the visitor to a friendly retry instead.
+CSRF_FAILURE_VIEW = 'aakarapp.views.csrf_failure'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
@@ -166,6 +170,10 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+# Where @login_required sends visitors who are not signed in. Point it at the
+# public portal (which opens the login popup) — never at /accounts/login/ or
+# /admin/, so freshly registered users can never land on a backend page.
+LOGIN_URL = '/cr/'
 LOGIN_REDIRECT_URL = '/cr/dashboard'
 LOGOUT_REDIRECT_URL = '/cr'
 ACCOUNT_LOGOUT_ON_GET = True
@@ -200,3 +208,5 @@ EMAIL_USE_TLS = env_bool('EMAIL_USE_TLS', True)
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'webmaster@localhost')
+# Abort SMTP sends that hang (e.g. blocked port 587) instead of freezing the request for minutes.
+EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT', '15'))
