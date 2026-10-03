@@ -1044,6 +1044,7 @@ input[type="file"]::file-selector-button {
 }
 
 /* ---------- Partners ---------- */
+.px-partners-head { margin-bottom: 2rem; }
 .px-partner {
   display: inline-flex;
   align-items: center;
@@ -1052,16 +1053,16 @@ input[type="file"]::file-selector-button {
   color: var(--px-ink);
   border: 2px solid var(--px-border-ink);
   box-shadow: var(--shadow);
-  padding: .8rem 1.4rem;
+  padding: 1rem 1.6rem;
   font-weight: 700;
-  font-size: .74rem;
+  font-size: .86rem;
   text-transform: uppercase;
   letter-spacing: .06em;
   text-decoration: none !important;
   transition: transform 100ms steps(2);
 }
 .px-partner:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--px-shadow-ink); color: var(--px-ink); }
-.px-partner img { height: 26px; width: auto; background: #fff; padding: 3px 6px; border: 1px solid var(--px-border-ink); }
+.px-partner img { height: 34px; width: auto; background: #fff; padding: 4px 8px; border: 1px solid var(--px-border-ink); }
 
 /* ---------- Contact cards ---------- */
 .px-contact-avatar {
