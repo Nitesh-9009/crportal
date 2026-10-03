@@ -538,6 +538,22 @@ html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.1rem;
 }
+.px-role-emblem {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.px-role-emblem svg { width: 56px; height: 56px; display: block; shape-rendering: crispEdges; }
+.px-role-emblem .px-role-shadow { fill: var(--px-shadow-ink); }
+.px-role-emblem .px-role-fill { fill: var(--px-yellow); }
+.px-role-emblem .px-role-mark { fill: #000; }
+.px-role-emblem--link .px-role-fill,
+.px-role-emblem--pioneer .px-role-fill { fill: var(--px-cyan); }
+.px-role-emblem--report .px-role-fill { fill: var(--px-green); }
+.px-role-emblem--leader .px-role-fill { fill: var(--px-coral); }
 .px-card h3 {
   font-family: var(--font-display);
   font-size: var(--h3-size);
