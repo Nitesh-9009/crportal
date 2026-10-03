@@ -549,6 +549,34 @@ html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var
 }
 .px-card p { color: var(--px-ink-dim); font-size: .82rem; margin: 0; }
 
+/* Reward emblems: block-built SVGs keep the artwork crisp on every platform. */
+.px-reward-emblem {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto .75rem;
+  display: grid;
+  place-items: center;
+  background: var(--px-bg);
+  border: 3px solid var(--px-border-ink);
+  box-shadow: 4px 4px 0 var(--px-shadow-ink);
+}
+.px-reward-emblem svg {
+  width: 58px;
+  height: 58px;
+  display: block;
+  shape-rendering: crispEdges;
+}
+.px-reward-emblem .px-reward-shadow { fill: var(--px-shadow-ink); }
+.px-reward-emblem .px-reward-fill { fill: var(--px-yellow); }
+.px-reward-emblem .px-reward-cutout { fill: var(--px-surface-alt); }
+.px-reward-emblem .px-reward-mark { fill: #000; }
+.px-reward-emblem--swag .px-reward-fill { fill: var(--px-cyan); }
+.px-reward-emblem--swag .px-reward-mark { fill: var(--px-cyan-text); }
+.px-reward-emblem--pass .px-reward-fill { fill: var(--px-green); }
+.px-reward-emblem--pass .px-reward-mark { fill: var(--px-green-text); }
+html[data-theme="dark"] .px-reward-emblem { background: var(--px-chip); }
+html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-surface); }
+
 /* ---------- Hero ---------- */
 .px-hero { position: relative; padding: 3rem 0 4.5rem; border-bottom: 2px solid var(--px-border-ink); overflow: hidden; }
 .px-hero-grid {
