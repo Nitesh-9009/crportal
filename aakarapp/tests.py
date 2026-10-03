@@ -145,12 +145,12 @@ class ParticipantAvatarTests(TestCase):
 
 
 class PublicContactTests(TestCase):
-    def test_home_uses_current_sarthak_contact_details_only(self):
+    def test_home_shows_contact_without_an_organiser_phone_number(self):
         response = self.client.get(reverse("home"))
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "img/sarthak-kastiya.jpg")
-        self.assertContains(response, "tel:+919926967455")
-        self.assertContains(response, "mailto:sarthak@aakaariitb.org.in")
-        self.assertContains(response, "https://www.linkedin.com/in/sarthak-kastiya/")
+        self.assertContains(response, "Sarthak Kastiya")
+        self.assertNotContains(response, "9926967455")
+        self.assertNotContains(response, "tel:")
+        self.assertContains(response, "mailto:sarthak@aakaariitb.ac.in")
         self.assertNotContains(response, "Nidhi Patel")
