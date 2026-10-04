@@ -834,6 +834,14 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
 .px-gold-strip .px-gold-title { color: var(--px-gold-strip-ink); font-weight: 700; font-size: .8rem; }
 .px-gold-strip .px-gold-sub { color: var(--px-gold-strip-dim); font-size: .74rem; }
 
+/* Keep the portrait card proportionate to the compact journey list beside it. */
+@media (min-width: 992px) {
+  .px-about-card {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+}
+
 /* ---------- Tables ---------- */
 .px-table-wrap {
   background: var(--px-surface);
