@@ -1106,9 +1106,9 @@ input[type="file"]::file-selector-button {
 .px-contact-card { padding: 2rem; text-align: center; }
 .px-contact-card .px-identity { justify-content: center; }
 .px-contact-avatar {
-  width: 64px;
-  height: 64px;
-  flex: 0 0 64px;
+  width: 84px;
+  height: 84px;
+  flex: 0 0 84px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
