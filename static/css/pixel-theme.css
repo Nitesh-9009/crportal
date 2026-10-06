@@ -678,6 +678,10 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   border: 2px solid var(--px-border-ink);
   box-shadow: var(--shadow);
 }
+.px-frame-badge .px-small-s {
+  font-size: .72em;
+  text-transform: lowercase;
+}
 @media (min-width: 640px) { .px-frame-badge { right: -18px; } }
 
 .px-frame {
@@ -1099,7 +1103,8 @@ input[type="file"]::file-selector-button {
 .px-partner img { height: 48px; width: auto; background: #fff; padding: 6px 10px; border: 1px solid var(--px-border-ink); }
 
 /* ---------- Contact cards ---------- */
-.px-contact-card { padding: 2rem; }
+.px-contact-card { padding: 2rem; text-align: center; }
+.px-contact-card .px-identity { justify-content: center; }
 .px-contact-avatar {
   width: 64px;
   height: 64px;
