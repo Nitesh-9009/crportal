@@ -587,6 +587,7 @@ html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var
 .px-reward-emblem .px-reward-cutout { fill: var(--px-surface-alt); }
 .px-reward-emblem .px-reward-mark { fill: #000; }
 .px-reward-emblem--swag .px-reward-fill { fill: var(--px-cyan); }
+.px-reward-emblem--swag svg { width: 68px; height: 68px; }
 .px-reward-emblem--pass .px-reward-fill { fill: var(--px-green); }
 html[data-theme="dark"] .px-reward-emblem { background: var(--px-chip); }
 html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-surface); }
@@ -777,6 +778,7 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
 
 /* ---------- CR journey roadmap (About: relatable for every student) ---------- */
 .px-count { font-variant-numeric: tabular-nums; }
+.px-count .px-tight-decimal { display: inline-block; margin-right: -.16em; }
 
 .px-journey {
   list-style: none;
@@ -1097,11 +1099,11 @@ input[type="file"]::file-selector-button {
 .px-partner img { height: 48px; width: auto; background: #fff; padding: 6px 10px; border: 1px solid var(--px-border-ink); }
 
 /* ---------- Contact cards ---------- */
-.px-contact-card { padding: 1.75rem; }
+.px-contact-card { padding: 2rem; }
 .px-contact-avatar {
-  width: 44px;
-  height: 44px;
-  flex: 0 0 44px;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
