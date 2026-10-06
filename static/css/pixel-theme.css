@@ -766,7 +766,13 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   gap: .8rem;
 }
 .px-ticker .px-t { display: inline-flex; align-items: center; gap: .5rem; }
-.px-ticker .px-arrow { font-family: var(--font-display); font-size: 11px; }
+.px-ticker .px-arrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  line-height: 1;
+  position: relative;
+  top: -2px;
+}
 .px-ticker .px-sep { color: var(--px-yellow); }
 
 /* ---------- CR journey roadmap (About: relatable for every student) ---------- */
