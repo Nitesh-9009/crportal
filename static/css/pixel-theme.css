@@ -786,10 +786,14 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   display: grid;
   gap: 1.15rem;
 }
-.px-jstep { display: flex; gap: .85rem; align-items: flex-start; }
+.px-jstep { display: flex; gap: .85rem; align-items: center; }
 .px-jstep .px-jnum {
   font-family: var(--font-display);
   font-size: 10px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--px-yellow);
   color: #000;
   border: 2px solid var(--px-border-ink);
