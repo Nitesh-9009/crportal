@@ -1080,12 +1080,12 @@ input[type="file"]::file-selector-button {
 .px-partner {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: .75rem;
   background: var(--px-surface);
   color: var(--px-ink);
   border: 2px solid var(--px-border-ink);
   box-shadow: var(--shadow);
-  padding: 1rem 1.6rem;
+  padding: 1.25rem 2rem;
   font-weight: 700;
   font-size: .86rem;
   text-transform: uppercase;
@@ -1094,7 +1094,7 @@ input[type="file"]::file-selector-button {
   transition: transform 100ms steps(2);
 }
 .px-partner:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--px-shadow-ink); color: var(--px-ink); }
-.px-partner img { height: 34px; width: auto; background: #fff; padding: 4px 8px; border: 1px solid var(--px-border-ink); }
+.px-partner img { height: 48px; width: auto; background: #fff; padding: 6px 10px; border: 1px solid var(--px-border-ink); }
 
 /* ---------- Contact cards ---------- */
 .px-contact-avatar {
@@ -1111,6 +1111,8 @@ input[type="file"]::file-selector-button {
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 12px;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ---------- Modal (auth + task submit + profile) ---------- */
