@@ -222,6 +222,13 @@ a:hover { color: var(--px-coral-text); }
   background: var(--px-tag-bg);
   color: var(--px-tag-ink);
 }
+.px-reward-tag {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #775700;
+}
+html[data-theme="dark"] .px-reward-tag { color: var(--px-tag-ink); }
 
 .neon-dot {
   display: inline-block;
