@@ -44,7 +44,10 @@
                     <span class="px-dots"><span class="px-dot-red"></span><span class="px-dot-yellow"></span><span class="px-dot-green"></span></span>
                 </div>
                 <div class="px-frame-body">
-                    <img src="{% static 'img/px-avatar.png' %}" alt="Aakaar campus ambassador avatar of a young Indian engineering student" class="px-smooth">
+                    <div class="px-hero-avatar-stage" data-hero-avatar-cycle role="img" aria-label="Aakaar campus ambassador avatars">
+                        <img class="px-hero-avatar is-active" src="{% static 'img/hero-avatar-man.png' %}" alt="">
+                        <img class="px-hero-avatar" src="{% static 'img/hero-avatar-woman.png' %}" alt="">
+                    </div>
                 </div>
                 <div class="px-frame-foot">
                     <span class="px-lvl">LVL: 2027</span>

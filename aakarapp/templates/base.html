@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="{% static 'css/pixel-theme.css' %}?v=20261008-contactauth1" rel="stylesheet">
+    <link href="{% static 'css/pixel-theme.css' %}?v=20261008-heroavatar1" rel="stylesheet">
     {% block styles %}{% endblock %}
 </head>
 <body>
@@ -317,6 +317,37 @@
 
     // Shared motion preference (used by counters + reveal animation)
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Hero avatar cycle: swap portraits every five seconds through a short
+    // technical-glitch transition. The first portrait stays fixed for visitors
+    // who opt out of motion.
+    const avatarStage = document.querySelector('[data-hero-avatar-cycle]');
+    if (avatarStage && !reduceMotion) {
+        const avatars = [...avatarStage.querySelectorAll('.px-hero-avatar')];
+        let activeIndex = Math.max(0, avatars.findIndex(avatar => avatar.classList.contains('is-active')));
+        let cycleTimer;
+        const cycleAvatar = () => {
+            const nextIndex = (activeIndex + 1) % avatars.length;
+            const current = avatars[activeIndex];
+            const next = avatars[nextIndex];
+            avatarStage.classList.add('is-glitching');
+            next.classList.add('is-revealing');
+            window.setTimeout(() => {
+                current.classList.remove('is-active');
+                next.classList.remove('is-revealing');
+                next.classList.add('is-active');
+                activeIndex = nextIndex;
+            }, 250);
+            window.setTimeout(() => avatarStage.classList.remove('is-glitching'), 560);
+        };
+        const startAvatarCycle = () => { cycleTimer = window.setInterval(cycleAvatar, 5000); };
+        const stopAvatarCycle = () => window.clearInterval(cycleTimer);
+        startAvatarCycle();
+        document.addEventListener('visibilitychange', () => {
+            stopAvatarCycle();
+            if (!document.hidden) startAvatarCycle();
+        });
+    }
 
     // Animated stat counters (hero badge, mini card, ticker)
     const counters = document.querySelectorAll('.px-count');
