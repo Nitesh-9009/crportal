@@ -227,6 +227,9 @@ a:hover { color: var(--px-coral-text); }
   border: 0;
   background: transparent;
   color: #775700;
+  font-size: 11px;
+  letter-spacing: .04em;
+  margin-right: .15rem;
 }
 html[data-theme="dark"] .px-reward-tag { color: var(--px-tag-ink); }
 
@@ -369,13 +372,8 @@ html[data-theme="dark"] .scanlines::after {
 .px-logo { display: inline-flex; align-items: center; text-decoration: none !important; color: var(--px-headline); }
 .px-logo svg { height: 42px; width: auto; }
 .px-logo img { height: 44px; width: auto; display: block; }
-/* The logo artwork is white — mount it on an ink plate in light mode */
-html[data-theme="light"] .px-logo {
-  background: #1c1b1b;
-  border: 2px solid #1c1b1b;
-  box-shadow: 3px 3px 0 rgba(28, 27, 27, .25);
-  padding: 5px 10px;
-}
+/* The transparent logo stays white in dark mode and becomes ink in light mode. */
+html[data-theme="light"] .px-logo img { filter: brightness(0) saturate(100%); }
 
 .px-nav {
   display: none;
@@ -400,7 +398,7 @@ html[data-theme="light"] .px-logo {
   text-transform: uppercase;
   letter-spacing: .08em;
   text-decoration: none !important;
-  transition: all 100ms steps(2);
+  transition: background-color 220ms ease, color 220ms ease, transform 100ms steps(2), box-shadow 100ms steps(2);
 }
 .px-tab svg { width: 15px; height: 15px; }
 .px-tab:hover { background: var(--px-bar-bg); color: var(--px-yellow); transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--px-shadow-ink); }
@@ -632,6 +630,8 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   letter-spacing: -0.5px;
   margin: 1.2rem 0;
 }
+.px-hero h1 span { display: block; }
+.px-hero h1 .px-hero-line-tomorrow { transform: translateX(-.17em); }
 
 .px-hero-sub {
   display: inline-flex;
@@ -1110,24 +1110,41 @@ input[type="file"]::file-selector-button {
 .px-partner img { height: 48px; width: auto; background: #fff; padding: 6px 10px; border: 1px solid var(--px-border-ink); }
 
 /* ---------- Contact cards ---------- */
-.px-contact-card { padding: 2rem; text-align: center; }
-.px-contact-card .px-identity { justify-content: center; }
-.px-contact-avatar {
-  width: 84px;
-  height: 84px;
-  flex: 0 0 84px;
-  display: inline-flex;
+.px-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+.px-contact-card {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  background: var(--px-yellow);
-  color: #000;
+  gap: 1.4rem;
+  padding: 1.6rem;
+}
+.px-contact-avatar {
+  width: 112px;
+  height: 112px;
   border: 2px solid var(--px-border-ink);
   box-shadow: var(--shadow-sm);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 12px;
   object-fit: cover;
   object-position: center;
+}
+.px-contact-name { font-size: 1rem; font-weight: 700; color: var(--px-ink); }
+.px-contact-role { margin-top: .25rem; font-size: .82rem; color: var(--px-ink-dim); }
+.px-contact-lines { display: grid; gap: .35rem; margin-top: .9rem; font-size: .74rem; }
+.px-contact-lines a { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: .35rem; color: var(--px-ink-dim); text-decoration: none; overflow-wrap: anywhere; }
+.px-contact-lines a:hover { color: var(--px-cyan-text); }
+.px-contact-lines a span { color: var(--px-headline); font-weight: 700; }
+@media (max-width: 700px) {
+  .px-contact-grid { grid-template-columns: 1fr; max-width: 32rem; }
+}
+@media (max-width: 420px) {
+  .px-contact-card { grid-template-columns: 88px minmax(0, 1fr); gap: 1rem; padding: 1.2rem; }
+  .px-contact-avatar { width: 88px; height: 88px; }
+  .px-contact-lines a { grid-template-columns: 1fr; gap: .1rem; }
 }
 
 /* ---------- Modal (auth + task submit + profile) ---------- */
