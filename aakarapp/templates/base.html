@@ -318,22 +318,6 @@
     // Shared motion preference (used by counters + reveal animation)
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Keep CSRF tokens fresh. Logging in/out ROTATES the token server-side,
-    // so any form rendered earlier (modal switches, another tab, back/forward
-    // navigation) would submit a stale token and die with a 403. The browser
-    // always holds the latest token in the csrftoken cookie — push it into
-    // every hidden input whenever a modal opens or the page is restored.
-    const refreshCsrf = () => {
-        const match = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
-        if (!match) return;
-        document.querySelectorAll('input[name="csrfmiddlewaretoken"]').forEach(input => {
-            input.value = match[1];
-        });
-    };
-    refreshCsrf();
-    document.addEventListener('show.bs.modal', refreshCsrf);
-    window.addEventListener('pageshow', refreshCsrf);
-
     // Animated stat counters (hero badge, mini card, ticker)
     const counters = document.querySelectorAll('.px-count');
     const fmtCount = (el, value) => {
