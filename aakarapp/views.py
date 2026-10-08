@@ -8,6 +8,8 @@ from django.db import IntegrityError
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.contrib import messages # <--- CHANGE 1: Import the messages framework
+from django.conf import settings
+from django.core.mail import send_mail
 from django.views.decorators.cache import never_cache
 
 # Import the new, refactored models
@@ -81,6 +83,27 @@ def register_cr(request):
                 crid=crid, names=full_name, username=username, email=email,
                 emails=email, colgName=colg_name, state=state, city=city,
                 pincode=pincode, mobileNo=phone_no, whatsappNo=phone_no
+            )
+
+            # Registration is complete immediately; no phone OTP is required.
+            # Email delivery should not prevent a successfully created CR account
+            # from being able to enter the portal if the mail provider is briefly unavailable.
+            send_mail(
+                subject='Your Aakaar CR registration is confirmed',
+                message=(
+                    f'Hi {full_name},\n\n'
+                    'Your registration for the Aakaar College Representative Network has been confirmed. '
+                    'Welcome to Aakaar, IIT Bombay!\n\n'
+                    f'Your CR ID is {crid}. You can now sign in to the CR Portal, explore tasks, '
+                    'submit your work, and begin earning rewards.\n\n'
+                    'If you need help, please use the Contact Us section in the portal.\n\n'
+                    'Regards,\n'
+                    'Team Aakaar\n'
+                    'IIT Bombay'
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[email],
+                fail_silently=True,
             )
             
             # --- Smooth onboarding: sign the new CR in immediately and take
