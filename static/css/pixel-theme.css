@@ -486,7 +486,7 @@ html[data-theme="dark"] .px-mode-toggle { background: var(--px-chip); color: var
   font-style: normal;
   color: var(--px-yellow);
   background: var(--px-bar-bg);
-  padding: 0 .35rem;
+  padding: .1em .35rem;
   box-shadow: 3px 3px 0 var(--px-shadow-ink);
 }
 .px-page-head .px-lead { color: var(--px-ink-dim); max-width: 46rem; margin: 0; }
@@ -1135,16 +1135,17 @@ input[type="file"]::file-selector-button {
 .px-contact-name { font-size: 1rem; font-weight: 700; color: var(--px-ink); }
 .px-contact-role { margin-top: .25rem; font-size: .82rem; color: var(--px-ink-dim); }
 .px-contact-lines { display: grid; gap: .35rem; margin-top: .9rem; font-size: .74rem; }
-.px-contact-lines a { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: .35rem; color: var(--px-ink-dim); text-decoration: none; overflow-wrap: anywhere; }
+.px-contact-lines a { display: grid; grid-template-columns: 1rem minmax(0, 1fr); align-items: center; gap: .5rem; color: var(--px-ink-dim); text-decoration: none; overflow-wrap: anywhere; }
 .px-contact-lines a:hover { color: var(--px-cyan-text); }
-.px-contact-lines a span { color: var(--px-headline); font-weight: 700; }
+.px-contact-lines a i { color: var(--px-headline); font-size: .85rem; text-align: center; }
+.px-contact-lines a .px-contact-value { color: inherit; font-weight: 400; }
 @media (max-width: 700px) {
   .px-contact-grid { grid-template-columns: 1fr; max-width: 32rem; }
 }
 @media (max-width: 420px) {
   .px-contact-card { grid-template-columns: 88px minmax(0, 1fr); gap: 1rem; padding: 1.2rem; }
   .px-contact-avatar { width: 88px; height: 88px; }
-  .px-contact-lines a { grid-template-columns: 1fr; gap: .1rem; }
+  .px-contact-lines a { grid-template-columns: 1rem minmax(0, 1fr); gap: .45rem; }
 }
 
 /* ---------- Modal (auth + task submit + profile) ---------- */
@@ -1271,10 +1272,23 @@ input[type="file"]::file-selector-button {
   font-family: var(--font-display);
   font-size: var(--stat-size);
   color: var(--px-yellow);
-  background: var(--px-bar-bg);
-  border: 2px solid var(--px-border-ink);
-  padding: .15rem .5rem;
+  padding: .15rem 0;
 }
+
+.px-password-field { position: relative; }
+.px-password-field .form-control { padding-right: 3rem; }
+.px-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: .7rem;
+  transform: translateY(-50%);
+  border: 0;
+  padding: .25rem;
+  line-height: 1;
+  background: transparent;
+  color: var(--px-ink-dim);
+}
+.px-password-toggle:hover, .px-password-toggle:focus-visible { color: var(--px-cyan-text); }
 
 /* ---------- Task cards ---------- */
 .px-task {
