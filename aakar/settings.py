@@ -179,6 +179,11 @@ LOGOUT_REDIRECT_URL = '/cr'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+# Nginx terminates HTTPS and forwards the real visitor address in X-Real-IP.
+# Tell django-allauth to trust that single proxy header so authentication
+# rate limits are applied per visitor rather than to every user as the proxy.
+ALLAUTH_TRUSTED_CLIENT_IP_HEADER = 'X-Real-IP'
+
 # Skips the intermediate "Sign In" confirmation page
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
