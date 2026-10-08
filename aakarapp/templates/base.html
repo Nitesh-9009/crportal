@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link href="{% static 'css/pixel-theme.css' %}?v=20261008-heroavatar2" rel="stylesheet">
+    <link href="{% static 'css/pixel-theme.css' %}?v=20261008-heroavatar3" rel="stylesheet">
     {% block styles %}{% endblock %}
 </head>
 <body>
@@ -323,6 +323,13 @@
     // who opt out of motion.
     const avatarStages = [...document.querySelectorAll('[data-hero-avatar-cycle]')];
     if (avatarStages.length && !reduceMotion) {
+        avatarStages.forEach(avatarStage => {
+            const pixels = document.createElement('span');
+            pixels.className = 'px-avatar-pixels';
+            pixels.setAttribute('aria-hidden', 'true');
+            pixels.innerHTML = '<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>';
+            avatarStage.append(pixels);
+        });
         let cycleTimer;
         const cycleAvatarStage = avatarStage => {
             const avatars = [...avatarStage.querySelectorAll('.px-hero-avatar')];
