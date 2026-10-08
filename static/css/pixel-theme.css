@@ -727,7 +727,8 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   border: 3px solid var(--px-border-ink);
   border-radius: 10px;
 }
-.px-frame-body .px-hero-avatar {
+.px-frame-body .px-hero-avatar,
+.px-portrait .px-hero-avatar {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -741,8 +742,8 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   image-rendering: auto;
   will-change: clip-path, filter, transform, opacity;
 }
-.px-frame-body .px-hero-avatar.is-active { opacity: 1; animation: pxAvatarMicroGlitch 4.2s steps(1, end) infinite; }
-.px-frame-body .px-hero-avatar.is-revealing { z-index: 2; opacity: 1; animation: pxAvatarSignalIn .34s steps(4, end) both; }
+.px-hero-avatar-stage .px-hero-avatar.is-active { opacity: 1; animation: pxAvatarMicroGlitch 4.2s steps(1, end) infinite; }
+.px-hero-avatar-stage .px-hero-avatar.is-revealing { z-index: 2; opacity: 1; animation: pxAvatarSignalIn .34s steps(4, end) both; }
 .px-hero-avatar-stage::before,
 .px-hero-avatar-stage::after {
   content: "";
@@ -792,8 +793,8 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   44% { opacity: .35; transform: translateX(-5%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .px-frame-body .px-hero-avatar:not(.is-active) { display: none; }
-  .px-frame-body .px-hero-avatar.is-active { animation: none; }
+  .px-hero-avatar-stage .px-hero-avatar:not(.is-active) { display: none; }
+  .px-hero-avatar-stage .px-hero-avatar.is-active { animation: none; }
 }
 
 .px-frame-foot {
