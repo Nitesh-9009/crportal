@@ -11,9 +11,12 @@ from django.contrib import messages # <--- CHANGE 1: Import the messages framewo
 from django.conf import settings
 from django.core.mail import send_mail
 from django.views.decorators.cache import never_cache
+import logging
 
 # Import the new, refactored models
 from .models import TaskZero, Task, Submission
+
+logger = logging.getLogger(__name__)
 
 # --- General Views ---
 
@@ -185,6 +188,12 @@ def csrf_failure(request, reason="", template_name=None):
     forward navigation) would otherwise hit Django's raw 403 page. Send the
     visitor back to the portal, which re-renders every form with a fresh
     token, with a clear message."""
+    logger.warning(
+        'CSRF rejection on %s %s: %s',
+        request.method,
+        request.path,
+        reason,
+    )
     messages.info(
         request,
         'Your session refreshed while submitting. Please try again — the form '
