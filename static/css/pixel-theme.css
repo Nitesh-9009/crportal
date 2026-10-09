@@ -1275,6 +1275,25 @@ input[type="file"]::file-selector-button {
 
 .px-identity { display: flex; align-items: center; gap: 1.1rem; min-width: 0; }
 .px-identity > div { min-width: 0; }
+.px-profile-name,
+.px-profile-meta,
+.px-profile-meta .px-score-chip,
+.px-college,
+.px-table .px-identity > div {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.px-identity .px-tag,
+.px-identity .px-score-chip,
+.px-log-count {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.px-identity .px-tag { padding-left: 0; }
+.px-identity .px-score-chip { padding: 0; }
+.px-log-count { padding-right: 0; }
 
 .px-avatar-picker { border: 0; padding: 0; margin: 0 0 1.4rem; }
 .px-avatar-picker legend {

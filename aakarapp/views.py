@@ -267,7 +267,9 @@ def updateProfile(request):
         profile, created = TaskZero.objects.get_or_create(username=user.username)
 
         profile.crid = f"AK{230000 + user.id}"
-        profile.names = request.POST.get('names', user.first_name)
+        profile.names = request.POST.get('names', user.first_name).strip()
+        user.first_name = profile.names
+        user.save(update_fields=['first_name'])
         profile.email = user.email
         profile.emails = request.POST.get('emails', user.email)
         profile.colgName = request.POST.get('colName', '')

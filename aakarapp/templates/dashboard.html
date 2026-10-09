@@ -22,8 +22,8 @@
                 <span class="animal-avatar animal-avatar-profile avatar-{{ current_obj.avatar|default:'fox' }}" role="img" aria-label="{{ current_obj.get_avatar_display|default:'Fox' }} avatar"></span>
                 <div>
                     <span class="px-tag">WELCOME BACK</span>
-                    <h2 class="font-pixel mt-2 mb-1" style="font-size:.95rem;color:var(--px-headline);">{{ user.first_name|default:user.username }}</h2>
-                    <p class="mb-1" style="font-size:.76rem;color:var(--px-ink-dim);">
+                    <h2 class="font-pixel mt-2 mb-1 px-profile-name" style="font-size:.95rem;color:var(--px-headline);">{{ current_obj.names|default:user.first_name|default:user.username }}</h2>
+                    <p class="mb-1 px-profile-meta" style="font-size:.76rem;color:var(--px-ink-dim);">
                         CR ID: <span class="px-score-chip">{{ CRID|default:"Pending" }}</span>
                         <span class="mx-2" style="color:var(--px-line)">|</span>
                         {{ current_obj.colgName|default:"Complete your profile" }}
@@ -64,7 +64,7 @@
     <section class="px-table-wrap mt-5 px-reveal">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
             <h3 class="font-pixel m-0" style="font-size:.78rem;color:var(--px-headline);">Tasks done by you</h3>
-            <span class="px-tag" style="color:var(--px-green-text);border-color:var(--px-border-ink);">{{ completed_tasks|length }} LOGGED</span>
+            <span class="px-tag px-log-count" style="color:var(--px-green-text);">{{ completed_tasks|length }} LOGGED</span>
         </div>
         <div class="table-responsive">
             <table class="px-table">
