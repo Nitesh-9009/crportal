@@ -754,12 +754,21 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
   opacity: 0;
 }
 .px-hero-avatar-stage::before {
-  background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,255,255,.16) 6px 7px, transparent 8px 12px);
-  mix-blend-mode: screen;
+  background:
+    linear-gradient(90deg, transparent 0 8%, #020205 8% 43%, transparent 43% 100%) 0 7% / 100% 11% no-repeat,
+    linear-gradient(90deg, #020205 0 23%, transparent 23% 57%, #020205 57% 91%, transparent 91% 100%) 0 25% / 100% 8% no-repeat,
+    linear-gradient(90deg, transparent 0 13%, #020205 13% 71%, transparent 71% 100%) 0 46% / 100% 17% no-repeat,
+    linear-gradient(90deg, #020205 0 37%, transparent 37% 64%, #020205 64% 100%) 0 76% / 100% 9% no-repeat,
+    repeating-linear-gradient(0deg, rgba(0,0,0,.82) 0 2px, transparent 2px 5px);
+  mix-blend-mode: normal;
 }
 .px-hero-avatar-stage::after {
-  inset: 18% -12%;
-  background: linear-gradient(90deg, transparent 0 12%, rgba(0,255,214,.75) 13% 32%, transparent 33% 54%, rgba(255,54,77,.75) 55% 74%, transparent 75%);
+  background:
+    linear-gradient(90deg, transparent 0 17%, rgba(54,79,255,.76) 18% 49%, transparent 50%) 0 15% / 100% 3px no-repeat,
+    linear-gradient(90deg, transparent 0 52%, rgba(176,188,255,.84) 53% 73%, transparent 74%) 0 38% / 100% 2px no-repeat,
+    linear-gradient(90deg, rgba(38,49,190,.72) 0 13%, transparent 14% 59%, rgba(74,91,255,.66) 60% 89%, transparent 90%) 0 67% / 100% 3px no-repeat,
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(68,84,255,.22) 4px 5px, transparent 6px 8px);
+  filter: drop-shadow(0 0 4px rgba(55,74,255,.72));
   mix-blend-mode: screen;
 }
 .px-hero-avatar-stage.is-glitching::before { animation: pxGlitchScan .54s steps(5, end) both; }
@@ -773,24 +782,25 @@ html[data-theme="dark"] .px-reward-emblem .px-reward-cutout { fill: var(--px-sur
 }
 @keyframes pxAvatarSignalOut {
   0% { opacity: 1; clip-path: inset(0); filter: none; transform: translateX(0); }
-  30% { clip-path: inset(11% 0 69% 0); filter: drop-shadow(7px 0 #00e6c3) drop-shadow(-7px 0 #ff3c5c); transform: translateX(-9px); }
-  65% { clip-path: inset(55% 0 10% 0); opacity: .7; filter: drop-shadow(-6px 0 #00e6c3); transform: translateX(10px); }
+  30% { clip-path: inset(11% 0 69% 0); filter: brightness(.3) contrast(1.8) drop-shadow(6px 0 #1e2cae); transform: translateX(-9px); }
+  65% { clip-path: inset(55% 0 10% 0); opacity: .45; filter: brightness(.08) contrast(2); transform: translateX(10px); }
   100% { opacity: 0; clip-path: inset(0); transform: translateX(0); }
 }
 @keyframes pxAvatarSignalIn {
-  0% { opacity: 0; clip-path: inset(52% 0 13% 0); filter: drop-shadow(9px 0 #00e6c3) drop-shadow(-9px 0 #ff3c5c); transform: translateX(-12px); }
-  45% { opacity: 1; clip-path: inset(13% 0 58% 0); filter: drop-shadow(-5px 0 #00e6c3); transform: translateX(8px); }
+  0% { opacity: 0; clip-path: inset(52% 0 13% 0); filter: brightness(0) contrast(2); transform: translateX(-12px); }
+  45% { opacity: 1; clip-path: inset(13% 0 58% 0); filter: brightness(.55) contrast(1.45) drop-shadow(-5px 0 #2637ce); transform: translateX(8px); }
   100% { opacity: 1; clip-path: inset(0); filter: none; transform: translateX(0); }
 }
 @keyframes pxGlitchScan {
-  0%, 100% { opacity: 0; transform: translateY(0); }
-  18%, 74% { opacity: .85; transform: translateY(-8px); }
-  42% { opacity: .3; transform: translateY(12px); }
+  0%, 100% { opacity: 0; transform: translateY(0) scaleX(1); }
+  18% { opacity: .92; transform: translateY(-12px) scaleX(1.08); }
+  42% { opacity: .48; transform: translateY(9px) scaleX(.94); }
+  74% { opacity: .88; transform: translateY(-4px) scaleX(1.03); }
 }
 @keyframes pxGlitchBand {
   0%, 100% { opacity: 0; transform: translateX(-18%); }
-  22%, 60% { opacity: .72; transform: translateX(8%); }
-  44% { opacity: .35; transform: translateX(-5%); }
+  22%, 60% { opacity: .8; transform: translateX(8%); }
+  44% { opacity: .4; transform: translateX(-5%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .px-hero-avatar-stage .px-hero-avatar:not(.is-active) { display: none; }
