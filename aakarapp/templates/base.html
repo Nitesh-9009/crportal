@@ -318,46 +318,6 @@
     // Shared motion preference (used by counters + reveal animation)
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Avatar cycles: swap portraits every five seconds through a short
-    // technical-glitch transition. The first portrait stays fixed for visitors
-    // who opt out of motion.
-    const avatarStages = [...document.querySelectorAll('[data-hero-avatar-cycle]')];
-    if (avatarStages.length && !reduceMotion) {
-        let cycleTimer;
-        const cycleAvatarStage = avatarStage => {
-            const avatars = [...avatarStage.querySelectorAll('.px-hero-avatar')];
-            if (avatars.length < 2) return;
-            const activeIndex = Math.max(0, avatars.findIndex(avatar => avatar.classList.contains('is-active')));
-            const nextIndex = (activeIndex + 1) % avatars.length;
-            const current = avatars[activeIndex];
-            const next = avatars[nextIndex];
-            const ghost = current.cloneNode();
-            ghost.className = 'px-hero-avatar px-glitch-ghost';
-            ghost.alt = '';
-            ghost.setAttribute('aria-hidden', 'true');
-            avatarStage.append(ghost);
-            avatarStage.classList.add('is-glitching');
-            next.classList.add('is-revealing');
-            window.setTimeout(() => {
-                current.classList.remove('is-active');
-                next.classList.remove('is-revealing');
-                next.classList.add('is-active');
-            }, 250);
-            window.setTimeout(() => {
-                avatarStage.classList.remove('is-glitching');
-                ghost.remove();
-            }, 560);
-        };
-        const cycleAvatars = () => avatarStages.forEach(cycleAvatarStage);
-        const startAvatarCycle = () => { cycleTimer = window.setInterval(cycleAvatars, 5000); };
-        const stopAvatarCycle = () => window.clearInterval(cycleTimer);
-        startAvatarCycle();
-        document.addEventListener('visibilitychange', () => {
-            stopAvatarCycle();
-            if (!document.hidden) startAvatarCycle();
-        });
-    }
-
     // Animated stat counters (hero badge, mini card, ticker)
     const counters = document.querySelectorAll('.px-count');
     const fmtCount = (el, value) => {
