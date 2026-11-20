@@ -304,7 +304,6 @@
     </div>
 </section>
 
-{% comment %}
 <!-- ============ PARTNERS ============ -->
 <section class="px-section tint-c" id="sponsors" style="padding:3rem 0;">
     <div class="px-shell px-center px-reveal">
@@ -312,13 +311,27 @@
             <h2>Official Partners &amp; Collaborators</h2>
             <div class="px-divider"></div>
         </div>
-        <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap:1.5rem;">
-            <a class="px-partner" href="https://unstop.com" target="_blank" rel="noopener">Platform Partner: <span style="color:var(--px-coral-text)"><img src="{% static 'img/Unstop-Logo-Transparent.png' %}" alt="Unstop"></span></a>
-            <a class="px-partner" href="https://www.studenttribe.in" target="_blank" rel="noopener">Outreach Partner: <span style="color:var(--px-cyan-text)"><img src="{% static 'img/Student-Tribe-Transparent.png' %}" alt="Student Tribe"></span></a>
+        <div class="partner-showcase">
+            <article class="partner-feature partner-feature--title">
+                <p class="partner-role">CR Title Partner</p>
+                <div class="partner-orb"><img src="{% static 'img/partner-proxsoft.webp' %}" alt="PROXSOFT" width="160" height="160" loading="lazy"></div>
+                <h3>PROXSOFT</h3>
+            </article>
+            <div class="partner-supporting">
+                <article class="partner-feature">
+                    <p class="partner-role">Platform Partner</p>
+                    <a class="partner-orb" href="https://unstop.com" target="_blank" rel="noopener" aria-label="Visit Unstop"><img src="{% static 'img/partner-unstop.webp' %}" alt="Unstop" width="600" height="600" loading="lazy"></a>
+                    <h3>Unstop</h3>
+                </article>
+                <article class="partner-feature">
+                    <p class="partner-role">Outreach Partner</p>
+                    <div class="partner-orb partner-orb--unifiers"><img src="{% static 'img/partner-unifiers.webp' %}" alt="UniFiers" width="200" height="200" loading="lazy"></div>
+                    <h3>UniFiers</h3>
+                </article>
+            </div>
         </div>
     </div>
 </section>
-{% endcomment %}
 
 <!-- ============ FAQ ============ -->
 <section class="px-section tint-b" id="faq">
