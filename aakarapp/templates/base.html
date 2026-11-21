@@ -47,6 +47,10 @@
                 <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 <span>Incentives</span>
             </a>
+            <a class="px-tab" href="{% url 'home' %}#sponsors" data-scroll-target="sponsors">
+                <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v3"/></svg>
+                <span>Our Partners</span>
+            </a>
             <a class="px-tab" href="{% url 'home' %}#faq" data-scroll-target="faq">
                 <svg fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
                 <span>FAQs</span>
@@ -88,6 +92,7 @@
         {% endif %}
         <a class="px-tab" href="{% url 'leaderboard' %}"><span>Scores</span></a>
         <a class="px-tab" href="{% url 'home' %}#incentives" data-scroll-target="incentives"><span>Incentives</span></a>
+        <a class="px-tab" href="{% url 'home' %}#sponsors" data-scroll-target="sponsors"><span>Our Partners</span></a>
         <a class="px-tab" href="{% url 'home' %}#faq" data-scroll-target="faq"><span>FAQs</span></a>
         <a class="px-tab" href="{% url 'home' %}#contact" data-scroll-target="contact"><span>Contact Us</span></a>
         {% if user.is_authenticated %}
