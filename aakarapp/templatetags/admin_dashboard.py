@@ -11,8 +11,7 @@ register = template.Library()
 @register.simple_tag
 def admin_dashboard_stats():
     now = timezone.now()
-    active_tasks = Task.objects.filter(deadline__isnull=True).count()
-    active_tasks += Task.objects.filter(deadline__gte=now).count()
+    active_tasks = Task.objects.available().count()
 
     return {
         "pending_submissions": Submission.objects.filter(graded=False).count(),

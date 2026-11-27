@@ -45,10 +45,28 @@ class TaskZero(models.Model):
 
 # 1. This model defines what a task is.
 
+class TaskQuerySet(models.QuerySet):
+    def available(self):
+        from django.utils import timezone
+        now = timezone.now()
+        return self.filter(
+            models.Q(publish_at__isnull=True) | models.Q(publish_at__lte=now),
+            models.Q(deadline__isnull=True) | models.Q(deadline__gte=now),
+        )
+
+
 class Task(models.Model):
+    objects = TaskQuerySet.as_manager()
     title = models.CharField(max_length=200)
     description = models.TextField()
     points = models.IntegerField(default=100)
+    publish_at = models.DateTimeField(null=True, blank=True, verbose_name="Scheduled publish time", help_text="Leave blank to publish immediately. Otherwise the task becomes available at this date and time (in the admin's displayed time zone).")
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        super().clean()
+        if self.publish_at and self.deadline and self.deadline <= self.publish_at:
+            raise ValidationError({"deadline": "The deadline must be after the scheduled publish time."})
     # This is the new field for the deadline
     deadline = models.DateTimeField(null=True, blank=True, help_text="Optional: The task will disappear after this date.")
 

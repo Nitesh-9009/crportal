@@ -323,7 +323,7 @@ def tasks_page(request):
         # --- End of Validation Logic ---
 
         try:
-            task = Task.objects.get(id=task_id)
+            task = Task.objects.available().get(id=task_id)
             
             # Create or update the submission. If a user resubmits, it will be
             # marked as ungraded again for you to review.
@@ -340,9 +340,7 @@ def tasks_page(request):
 
     # Query to get tasks that are not past their deadline
     # This part runs for ALL users (logged-in or not)
-    active_tasks = Task.objects.filter(
-        Q(deadline__isnull=True) | Q(deadline__gte=timezone.now())
-    ).order_by('-id')
+    active_tasks = Task.objects.available().order_by('-id')
 
     user_submissions = []
     if request.user.is_authenticated:

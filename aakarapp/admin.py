@@ -55,13 +55,14 @@ class TaskAdmin(ImportExportModelAdmin):
     list_display = (
         "title",
         "points",
+        "publish_at",
         "deadline",
         "task_status",
         "submission_count",
         "pending_count",
     )
     search_fields = ("title", "description")
-    list_filter = ("deadline",)
+    list_filter = ("publish_at", "deadline")
     date_hierarchy = "deadline"
     ordering = ("-deadline", "title")
     list_per_page = 30
@@ -78,6 +79,8 @@ class TaskAdmin(ImportExportModelAdmin):
 
     @admin.display(description="Status")
     def task_status(self, obj):
+        if obj.publish_at and obj.publish_at > timezone.now():
+            return format_html('<span class="status-pill status-pending">Scheduled</span>')
         if obj.deadline and obj.deadline < timezone.now():
             return format_html('<span class="status-pill status-closed">Closed</span>')
         return format_html('<span class="status-pill status-live">Live</span>')
